@@ -9,6 +9,7 @@ class CourseList extends React.Component {
         this.state = {course: {title: ""},courses: []};
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
     componentDidMount() {
@@ -25,8 +26,8 @@ class CourseList extends React.Component {
 
     courseRows() {
         return ( this.state.courses.map(function (course) {
-            return <CourseRow course={course}/>
-        }));
+            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} />
+        },this));
     }
 
     titleChanged(event) {
@@ -38,6 +39,12 @@ class CourseList extends React.Component {
             .createCourse(this.state.course)
             .then(() => { this.findAllCourses(); });
 
+    }
+
+    deleteCourse(courseId) {
+        this.courseService
+            .deleteCourse(courseId)
+            .then(() => { this.findAllCourses(); });
     }
 
     render() {
