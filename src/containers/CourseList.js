@@ -6,7 +6,11 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
-        this.state = {course: {title: ""},courses: []};
+        this.state =
+            {
+                course: {title: "",created: "", modified: "", modules: []},
+                courses: []
+            };
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
@@ -19,8 +23,11 @@ class CourseList extends React.Component {
     findAllCourses() {
         this.courseService.findAllCourses()
             .then((courses) => {
-                this.setState({courses: courses});
                 console.log(courses);
+                this.setState({courses: courses});
+            })
+            .catch(function (response) {
+                console.log('error caught in find courses'+response);
             });
     }
 
@@ -31,7 +38,12 @@ class CourseList extends React.Component {
     }
 
     titleChanged(event) {
-        this.setState({course:{title:event.target.value}});
+        this.setState(
+            {course:
+                {title:event.target.value,
+                 created: new Date().getTime(),
+                 modified: new Date().getTime(),
+                 modules: []}});
     }
 
     createCourse() {
@@ -53,12 +65,17 @@ class CourseList extends React.Component {
             <h2>Course List</h2>
             <table className="table">
                 <thead>
-                <tr><th>Title</th></tr>
+                <tr>
+                    <th>Title</th>
+                    <th>Last Modified</th>
+                    <th></th>
+                </tr>
                 <tr>
                     <th><input id="titleFld"
                                className="form-control"
                                onChange={this.titleChanged}
                                placeholder="cs101"/></th>
+                    <th></th>
                     <th>
                         <button className="btn btn-primary" onClick={this.createCourse}>
                         Add
