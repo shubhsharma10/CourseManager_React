@@ -43,15 +43,19 @@ export default class ModuleList extends Component {
             .createModule(this.props.courseId, this.state.module)
             .then(this.findAllModulesForCourse(this.props.courseId))
     }
+
     titleChanged(event) {
         console.log(event.target.value);
         this.setState({module: {title: event.target.value}});
     }
+
     renderListOfModules() {
         let modules = this.state.modules.map(function(module){
             return <ModuleListItem module={module}
-                                   key={module.id}/>
-        });
+                                   key={module.id}
+                                   active = {module.id === this.props.activeModuleId}
+                                   selectModule={this.props.selectModule}/>
+        },this);
         return modules;
     }
     render() {
