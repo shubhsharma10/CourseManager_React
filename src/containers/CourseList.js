@@ -49,17 +49,18 @@ class CourseList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
             <h2>Course List</h2>
-            <table>
+            <table className="table">
                 <thead>
                 <tr><th>Title</th></tr>
                 <tr>
                     <th><input id="titleFld"
+                               className="form-control"
                                onChange={this.titleChanged}
                                placeholder="cs101"/></th>
                     <th>
-                        <button onClick={this.createCourse}>
+                        <button className="btn btn-primary" onClick={this.createCourse}>
                         Add
                     </button></th>
                 </tr>
