@@ -1,15 +1,19 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom'
 import ModuleListItem from '../components/ModuleListItem';
-import ModuleService from '../services/ModuleService'
+import ModuleService from '../services/ModuleService';
+import ModuleEditor from './ModuleEditor';
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class ModuleList extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             courseId: '',
             module: { title: 'New Module' },
             selectedModuleId: '',
+            moduleSelected: false,
             modules: []
         };
 
@@ -54,7 +58,9 @@ export default class ModuleList extends Component {
     }
 
     selectModule(moduleId) {
-        this.setState({selectedModuleId:moduleId})
+        this.setState({selectedModuleId:moduleId});
+        this.setState({moduleSelected:true});
+        //this.context.history.push('/module/'+moduleId);
     }
 
     deleteModule(moudleId,moduleTitle) {
@@ -78,10 +84,10 @@ export default class ModuleList extends Component {
     renderListOfModules() {
         let modules = this.state.modules.map(function(module){
             return <ModuleListItem module={module}
+                                   courseId={this.state.courseId}
                                    key={module.id}
                                    active = {module.id === this.state.selectedModuleId}
                                    selectModule={this.selectModule}
-                                   rename={this.renameModule}
                                    delete={this.deleteModule}/>
         },this);
         return modules;
@@ -89,26 +95,28 @@ export default class ModuleList extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-3">
-                    <input onChange={this.titleChanged}
-                           value={this.state.module.title}
-                           id="moduleTitleFId"
-                           placeholder="New Module"
-                           className="form-control"/>
-                    <button onClick={this.createModule} className="btn btn-primary btn-block">
-                        <i className="fa fa-plus"></i>
-                    </button>
-                    <br/>
-                    <ul className="list-group">
-                        {this.renderListOfModules()}
-                    </ul>
-                </div>
-                <div className="col-9">
-                    BB
-                </div>
+            <Router>
+                <div className="row">
+                    <div className="col-3">
+                        <input onChange={this.titleChanged}
+                               value={this.state.module.title}
+                               id="moduleTitleFId"
+                               placeholder="New Module"
+                               className="form-control"/>
+                        <button onClick={this.createModule} className="btn btn-primary btn-block">
+                            <i className="fa fa-plus"></i>
+                        </button>
+                        <br/>
+                        <ul className="list-group">
+                            {this.renderListOfModules()}
+                        </ul>
+                    </div>
+                    <div className="col-9">
+                        <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}/>
+                    </div>
 
-            </div>
+                </div>
+            </Router>
         );
     }
 }
