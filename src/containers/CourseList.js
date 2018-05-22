@@ -55,7 +55,7 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId,courseTitle) {
-        let confirmMessage = 'Are you sure you want to delete course: '+courseTitle+' ?';
+        let confirmMessage = 'Do you want to delete '+courseTitle+' ?';
         bootbox.confirm(confirmMessage,(result) =>
             {
                 if(result) {

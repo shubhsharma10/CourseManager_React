@@ -9,8 +9,11 @@ export default class ModuleListItem
                 onClick={() => this.props.selectModule(this.props.module.id)}>
                 {this.props.module.title}
                 <span className="float-right">
-                    <i className="fa fa-trash"></i>
-                    <i className="fa fa-pencil"></i>
+                    <button className="btn btn-sm btn-danger"
+                            onClick={() =>
+                            {this.props.delete(this.props.module.id,this.props.module.title)}}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </button>
                 </span>
             </li>
         );

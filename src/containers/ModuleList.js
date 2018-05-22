@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService'
+import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class ModuleList extends Component {
     constructor(props) {
@@ -8,19 +9,24 @@ export default class ModuleList extends Component {
         this.state = {
             courseId: '',
             module: { title: 'New Module' },
+            selectedModuleId: '',
             modules: []
         };
+
         this.createModule = this.createModule.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
-
-        this.setCourseId =
-            this.setCourseId.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+        this.selectModule = this.selectModule.bind(this);
+        this.deleteModule = this.deleteModule.bind(this);
 
         this.moduleService = ModuleService.instance;
     }
 
     setModules(modules) {
         this.setState({modules: modules});
+    }
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
     }
 
     findAllModulesForCourse(courseId) {
@@ -32,9 +38,6 @@ export default class ModuleList extends Component {
             });
     }
 
-    setCourseId(courseId) {
-        this.setState({courseId: courseId});
-    }
     componentDidMount() {
         this.setCourseId(this.props.courseId);
     }
@@ -48,7 +51,25 @@ export default class ModuleList extends Component {
             .createModule(this.props.courseId, this.state.module)
             .then(() => {this.findAllModulesForCourse(this.props.courseId);})
             .then(() => {this.setState({module: {title: 'New Module'}});});
-}
+    }
+
+    selectModule(moduleId) {
+        this.setState({selectedModuleId:moduleId})
+    }
+
+    deleteModule(moudleId,moduleTitle) {
+        let confirmMessage = 'Do you want to delete '+moduleTitle+' ?';
+        bootbox.confirm(confirmMessage,(result) =>
+        {
+            if(result) {
+                this.moduleService
+                    .deleteModule(moudleId)
+                    .then(() => {
+                        this.findAllModulesForCourse(this.state.courseId);
+                    });
+            }
+        });
+    }
 
     titleChanged(event) {
         this.setState({module: {title: event.target.value}});
@@ -58,11 +79,14 @@ export default class ModuleList extends Component {
         let modules = this.state.modules.map(function(module){
             return <ModuleListItem module={module}
                                    key={module.id}
-                                   active = {module.id === this.props.activeModuleId}
-                                   selectModule={this.props.selectModule}/>
+                                   active = {module.id === this.state.selectedModuleId}
+                                   selectModule={this.selectModule}
+                                   rename={this.renameModule}
+                                   delete={this.deleteModule}/>
         },this);
         return modules;
     }
+
     render() {
         return (
             <div className="row">
@@ -75,6 +99,7 @@ export default class ModuleList extends Component {
                     <button onClick={this.createModule} className="btn btn-primary btn-block">
                         <i className="fa fa-plus"></i>
                     </button>
+                    <br/>
                     <ul className="list-group">
                         {this.renderListOfModules()}
                     </ul>
