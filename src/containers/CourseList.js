@@ -24,7 +24,6 @@ class CourseList extends React.Component {
     findAllCourses() {
         this.courseService.findAllCourses()
             .then((courses) => {
-                console.log(courses);
                 this.setState({courses: courses});
             })
             .catch(function (response) {
@@ -50,7 +49,8 @@ class CourseList extends React.Component {
     createCourse() {
         this.courseService
             .createCourse(this.state.course)
-            .then(() => { this.findAllCourses(); });
+            .then(() => { this.findAllCourses(); })
+            .then(() => { document.getElementById('titleFId').value = '';})
 
     }
 
@@ -71,7 +71,7 @@ class CourseList extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-            <h2>Course List</h2>
+            <h2>Course</h2>
             <table className="table">
                 <thead>
                 <tr>
@@ -81,10 +81,12 @@ class CourseList extends React.Component {
                     <th>&nbsp;</th>
                 </tr>
                 <tr>
-                    <th><input id="titleFld"
+                    <th>
+                        <input id="titleFId"
                                className="form-control"
                                onChange={this.titleChanged}
-                               placeholder="CS0000"/></th>
+                               placeholder="CS0000"/>
+                    </th>
                     <th>me</th>
                     <th>today</th>
                     <th>

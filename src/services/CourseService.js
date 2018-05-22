@@ -34,6 +34,13 @@ class CourseService {
             });
     }
 
+    findCourseById(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId)
+            .then((response) => {
+                return response.json();
+            });
+    }
+
     findAllCourses() {
         return fetch(COURSE_API_URL)
             .then(function(response){
