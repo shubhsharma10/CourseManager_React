@@ -1,6 +1,7 @@
 import React from 'react';
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService'
+import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 class CourseList extends React.Component {
     constructor() {
@@ -53,10 +54,18 @@ class CourseList extends React.Component {
 
     }
 
-    deleteCourse(courseId) {
-        this.courseService
-            .deleteCourse(courseId)
-            .then(() => { this.findAllCourses(); });
+    deleteCourse(courseId,courseTitle) {
+        let confirmMessage = 'Are you sure you want to delete course: '+courseTitle+' ?';
+        bootbox.confirm(confirmMessage,(result) =>
+            {
+                if(result) {
+                    this.courseService
+                        .deleteCourse(courseId)
+                        .then(() => {
+                            this.findAllCourses();
+                        });
+                }
+            });
     }
 
     render() {
@@ -67,15 +76,17 @@ class CourseList extends React.Component {
                 <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Owner</th>
                     <th>Last Modified</th>
-                    <th></th>
+                    <th>&nbsp;</th>
                 </tr>
                 <tr>
                     <th><input id="titleFld"
                                className="form-control"
                                onChange={this.titleChanged}
-                               placeholder="cs101"/></th>
-                    <th></th>
+                               placeholder="CS0000"/></th>
+                    <th>me</th>
+                    <th>today</th>
                     <th>
                         <button className="btn btn-primary" onClick={this.createCourse}>
                         Add
