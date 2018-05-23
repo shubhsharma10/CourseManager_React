@@ -34,17 +34,18 @@ export default class CourseEditor
             .findCourseById(courseId)
             .then((course) => {
                 this.setState({course:course});
+                this.renderCourseTitle(course.title);
             });
     }
 
-    getCourseTitle() {
-        return this.state.course.title;
+    renderCourseTitle(courseTitle) {
+        document.getElementById("pageTitleFId").innerHTML = "Course Manager: "+courseTitle;
     }
 
     render() {
         return (
             <div>
-                <h3>{this.getCourseTitle()}</h3>
+                <br/>
                 <ModuleList courseId={this.state.courseId}/>
             </div>
         )

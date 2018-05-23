@@ -119,7 +119,7 @@ export default class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div className="row">
+                <div className="row container">
                     <div className="col-3">
                         <input onChange={this.titleChanged}
                                value={this.state.module.title}

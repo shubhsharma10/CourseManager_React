@@ -132,7 +132,7 @@ export default class LessonTabs extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <ul className="nav nav-tabs lesson-tabs justify-content-right">
                     {this.renderTabs()}
                     <li style={{margin:'5px'}}>

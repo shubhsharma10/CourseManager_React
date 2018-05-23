@@ -3,6 +3,7 @@ import TopicService from '../services/TopicService'
 import CourseService from '../services/CourseService'
 import TopicCard from '../components/TopicCard'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
+import $ from 'jquery'
 
 class LessonContent extends React.Component {
 
@@ -31,6 +32,9 @@ class LessonContent extends React.Component {
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
         this.setLessonId(this.props.lessonId);
+        $('.nav-tabs a').on('shown.bs.tab', (()=>{
+            this.findAllTopicsForLesson(this.props.courseId,this.props.moduleId,this.props.lessonId);
+        }));
     }
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
