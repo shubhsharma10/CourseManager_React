@@ -1,7 +1,6 @@
 let _singleton = Symbol();
 const COURSE_API_URL =
-    'http://localhost:8080/api/course';
-
+    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course';
 
 class CourseService {
 

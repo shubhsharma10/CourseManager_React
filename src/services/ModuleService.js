@@ -1,5 +1,5 @@
 const MODULE_API_URL =
-    'http://localhost:8080/api/course/CID/module';
+    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course/CID/module';
 
 const DIRECT_MODULE_API_URL = 'http://localhost:8080/api/module'
 
