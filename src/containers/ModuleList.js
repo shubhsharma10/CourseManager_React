@@ -90,10 +90,8 @@ export default class ModuleList extends Component {
             if(result) {
                 this.moduleService
                     .deleteModule(moudleId)
-                    .then((response) => {
-                        if(response.status === 200) {
-                            this.updateCourseModifiedTime();
-                        }
+                    .then(() => {
+                        this.updateCourseModifiedTime();
                     })
                     .then(() => {
                         this.findAllModulesForCourse(this.state.courseId);

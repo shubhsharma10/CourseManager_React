@@ -123,6 +123,7 @@ export default class LessonTabs extends React.Component {
                     courseId = {this.state.courseId}
                     moduleId = {this.state.moduleId}
                     lessonId = {lesson.id}
+                    key = {lesson.id}
                     lessonTitle = {lesson.title}/>
         });
         return lessonsContent;
@@ -138,7 +139,7 @@ export default class LessonTabs extends React.Component {
                         <div style={{paddingTop: '10px'}}>
                         <button className='btn btn-success'
                                 onClick={this.createLesson}>
-                            <i className="fa fa-plus"></i>
+                            Add Lesson
                         </button>
                         </div>
                     </li>

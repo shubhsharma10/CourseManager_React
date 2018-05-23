@@ -1,7 +1,7 @@
 const MODULE_API_URL =
     'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course/CID/module';
 
-const DIRECT_MODULE_API_URL = 'http://localhost:8080/api/module'
+const DIRECT_MODULE_API_URL = 'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/module'
 
 let _singleton = Symbol();
 export default class ModuleService {

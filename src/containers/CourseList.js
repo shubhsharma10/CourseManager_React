@@ -9,7 +9,7 @@ class CourseList extends React.Component {
         this.courseService = CourseService.instance;
         this.state =
             {
-                course: {title: "",created: "", modified: "", modules: []},
+                course: {title: "CS0000",created: "", modified: "", modules: []},
                 courses: []
             };
         this.titleChanged = this.titleChanged.bind(this);
@@ -51,7 +51,7 @@ class CourseList extends React.Component {
         this.courseService
             .createCourse(this.state.course)
             .then(() => { this.findAllCourses(); })
-            .then(() => { document.getElementById('titleFId').value = '';})
+            .then(() => { document.getElementById('titleFId').value = 'CS0000';})
 
     }
 
@@ -85,7 +85,7 @@ class CourseList extends React.Component {
                         <input id="titleFId"
                                className="form-control"
                                onChange={this.titleChanged}
-                               placeholder="CS0000"/>
+                               defaultValue="CS0000"/>
                     </th>
                     <th>me</th>
                     <th>today</th>
