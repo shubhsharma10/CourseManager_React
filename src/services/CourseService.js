@@ -41,6 +41,23 @@ class CourseService {
             });
     }
 
+    updateCourse(courseId,course) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'put',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function(response){
+                return response;
+            })
+            .catch(function (error) {
+                console.log("Update course promise error :: "+error);
+                return null;
+            });
+    }
+
     findAllCourses() {
         return fetch(COURSE_API_URL)
             .then(function(response){

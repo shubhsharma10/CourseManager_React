@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
+import CourseService from '../services/CourseService';
 import ModuleEditor from './ModuleEditor';
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
@@ -24,6 +25,7 @@ export default class ModuleList extends Component {
         this.deleteModule = this.deleteModule.bind(this);
 
         this.moduleService = ModuleService.instance;
+        this.courseService = CourseService.instance;
     }
 
     setModules(modules) {
@@ -45,22 +47,40 @@ export default class ModuleList extends Component {
     componentDidMount() {
         this.setCourseId(this.props.courseId);
     }
+
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId)
     }
 
+    updateCourseModifiedTime(){
+        this.courseService
+            .findCourseById(this.state.courseId)
+            .then((response) => {
+                response.modified = new Date().toUTCString();
+                this.courseService
+                    .updateCourse(this.state.courseId,response);
+            });
+    }
+
     createModule() {
         this.moduleService
             .createModule(this.props.courseId, this.state.module)
-            .then(() => {this.findAllModulesForCourse(this.props.courseId);})
-            .then(() => {this.setState({module: {title: 'New Module'}});});
+            .then(() => {
+                this.updateCourseModifiedTime();
+            })
+            .then(() => {
+                this.findAllModulesForCourse(this.props.courseId);
+            })
+            .then(() => {
+                this.setState({module: {title: 'New Module'}});
+            });
     }
+
 
     selectModule(moduleId) {
         this.setState({selectedModuleId:moduleId});
         this.setState({moduleSelected:true});
-        //this.context.history.push('/module/'+moduleId);
     }
 
     deleteModule(moudleId,moduleTitle) {
@@ -70,6 +90,11 @@ export default class ModuleList extends Component {
             if(result) {
                 this.moduleService
                     .deleteModule(moudleId)
+                    .then((response) => {
+                        if(response.status === 200) {
+                            this.updateCourseModifiedTime();
+                        }
+                    })
                     .then(() => {
                         this.findAllModulesForCourse(this.state.courseId);
                     });
@@ -107,7 +132,7 @@ export default class ModuleList extends Component {
                             <i className="fa fa-plus"></i>
                         </button>
                         <br/>
-                        <ul className="list-group">
+                        <ul className="list-group moduleList">
                             {this.renderListOfModules()}
                         </ul>
                     </div>

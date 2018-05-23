@@ -16,7 +16,7 @@ export default class ModuleService {
                 .replace('CID', courseId))
             .then(function (response) {
                 return response.json();
-            })
+            });
     }
 
     createModule(courseId, module) {
@@ -25,8 +25,11 @@ export default class ModuleService {
                 body: JSON.stringify(module),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
-            }).then(function (response)
-        { return response.json(); })
+            })
+            .then(function (response)
+            {
+                return response;
+            });
     }
 
     deleteModule(moduleId) {

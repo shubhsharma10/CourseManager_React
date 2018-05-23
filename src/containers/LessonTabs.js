@@ -101,7 +101,7 @@ export default class LessonTabs extends React.Component {
     render() {
         return (
             <div>
-                <ul className="nav nav-pills justify-content-right">
+                <ul className="nav nav-tabs lesson-tabs justify-content-right">
                     {this.renderTabs()}
                     <li style={{margin:'5px'}}>
                         <div style={{paddingTop: '10px'}}>
