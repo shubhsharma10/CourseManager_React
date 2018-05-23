@@ -71,34 +71,34 @@ class CourseList extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Owner</th>
-                    <th>Last Modified</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <tr>
-                    <th>
-                        <input id="titleFId"
-                               className="form-control"
-                               onChange={this.titleChanged}
-                               defaultValue="CS0000"/>
-                    </th>
-                    <th>me</th>
-                    <th>today</th>
-                    <th>
-                        <button className="btn btn-primary" onClick={this.createCourse}>
-                        Add
-                    </button></th>
-                </tr>
-                </thead>
-                <tbody>
-                { this.getCourseRows() }
-                </tbody>
-            </table>
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <a className="navbar-brand">Course Manager</a>
+
+                    <input className="form-control ml-2 mr-3 mt-1 mb-1"
+                           id="titleFId" type="text"
+                           onChange={this.titleChanged} defaultValue="CS0000"
+                    />
+                    <button className="btn btn-success btn-circle btn-xl"
+                            onClick={this.createCourse}>
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </nav>
+                <div className="container">
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Owner</th>
+                            <th>Last Modified</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        { this.getCourseRows() }
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
     )

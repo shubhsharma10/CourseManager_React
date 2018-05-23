@@ -119,9 +119,9 @@ export default class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div className="row container">
+                <div className="row">
                     <div className="col-3">
-                        <div className="input-group mb-3">
+                        <div className="input-group">
                             <input onChange={this.titleChanged}
                                    value={this.state.module.title}
                                    id="moduleTitleFId"

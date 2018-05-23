@@ -9,9 +9,6 @@ class CourseManager extends Component {
         return (
             <Router>
                 <div className="container-fluid">
-                    <div className="jumbotron">
-                        <h1 id="pageTitleFId">Course Manager</h1>
-                    </div>
                     <Route
                         exact path="/" component={CourseList}>
                     </Route>

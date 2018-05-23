@@ -39,14 +39,20 @@ export default class CourseEditor
     }
 
     renderCourseTitle(courseTitle) {
-        document.getElementById("pageTitleFId").innerHTML = "Course Manager: "+courseTitle;
+        document.getElementById("courseEditorFId").innerHTML = "Course Manager: "+courseTitle;
     }
 
     render() {
         return (
-            <div>
-                <br/>
-                <ModuleList courseId={this.state.courseId}/>
+            <div className="container-fluid">
+                <div className="mx-auto">
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                        <a className="navbar-brand" id="courseEditorFId">Course Manager</a>
+                    </nav>
+                </div>
+                <div className="mx-auto">
+                    <ModuleList courseId={this.state.courseId}/>
+                </div>
             </div>
         )
     }
