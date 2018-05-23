@@ -19,10 +19,10 @@ class LessonContent extends React.Component {
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
         this.createTopic = this.createTopic.bind(this);
+        this.deleteTopic = this.deleteTopic.bind(this);
         this.setTopicTitle = this.setTopicTitle.bind(this);
 
         this.topicService = TopicService.instance;
-        var self = this;
     }
 
     componentDidMount() {
@@ -85,13 +85,27 @@ class LessonContent extends React.Component {
         });
     }
 
+    deleteTopic(topicId,topicTitle) {
+        let confirmMessage = 'Do you want to delete '+topicTitle+' ?';
+        bootbox.confirm(confirmMessage,(result) =>
+        {
+            if(result) {
+                this.topicService
+                    .deleteTopic(topicId)
+                    .then(() => {
+                        this.findAllTopicsForLesson(this.state.courseId,this.state.moduleId,this.state.lessonId);
+                    });
+            }
+        });
+    }
+
     renderTopics() {
         let topics = this.state.topics.map((topic)=> {
             return <TopicCard
                 topic={topic}
                 key={topic.id}
                 id={topic.id}
-                delete={this.deleteLesson}/>
+                delete={this.deleteTopic}/>
         });
         return topics;
     }
