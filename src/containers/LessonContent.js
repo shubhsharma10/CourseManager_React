@@ -63,6 +63,7 @@ class LessonContent extends React.Component {
     }
 
     setTopics(topics) {
+        topics.sort((a, b) => a.id - b.id);
         this.setState({topics: topics});
     }
 
@@ -108,7 +109,7 @@ class LessonContent extends React.Component {
     }
 
     deleteTopic(topicId,topicTitle) {
-        let confirmMessage = 'Do you want to delete '+topicTitle+' ?';
+        let confirmMessage = 'Are you sure, you want to delete '+topicTitle+' ?';
         bootbox.confirm(confirmMessage,(result) =>
         {
             if(result) {

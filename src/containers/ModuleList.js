@@ -29,6 +29,7 @@ export default class ModuleList extends Component {
     }
 
     setModules(modules) {
+        modules.sort((a, b) => a.id - b.id);
         this.setState({modules: modules});
     }
     setCourseId(courseId) {
@@ -87,7 +88,7 @@ export default class ModuleList extends Component {
     }
 
     deleteModule(moudleId,moduleTitle) {
-        let confirmMessage = 'Do you want to delete '+moduleTitle+' ?';
+        let confirmMessage = 'Are you sure, you want to delete '+moduleTitle+' ?';
         bootbox.confirm(confirmMessage,(result) =>
         {
             if(result) {

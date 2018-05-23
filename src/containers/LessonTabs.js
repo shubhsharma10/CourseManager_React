@@ -47,6 +47,7 @@ export default class LessonTabs extends React.Component {
     }
 
     setLessons(lessons) {
+        lessons.sort((a, b) => a.id - b.id);
         this.setState({lessons: lessons});
     }
 
@@ -91,7 +92,7 @@ export default class LessonTabs extends React.Component {
     }
 
     deleteLesson(lessonId,lessonTitle){
-        let confirmMessage = 'Do you want to delete '+lessonTitle+' ?';
+        let confirmMessage = 'Are you sure, you want to delete '+lessonTitle+' ?';
         bootbox.confirm(confirmMessage,(result) =>
         {
             if(result) {

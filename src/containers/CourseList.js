@@ -25,6 +25,7 @@ class CourseList extends React.Component {
     findAllCourses() {
         this.courseService.findAllCourses()
             .then((courses) => {
+                courses.sort((a, b) => a.id - b.id);
                 this.setState({courses: courses});
             })
             .catch(function (response) {
@@ -56,7 +57,7 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId,courseTitle) {
-        let confirmMessage = 'Do you want to delete '+courseTitle+' ?';
+        let confirmMessage = 'Are you sure, you want to delete '+courseTitle+' ?';
         bootbox.confirm(confirmMessage,(result) =>
             {
                 if(result) {
