@@ -5,7 +5,7 @@ class LessonTab extends React.Component {
     render() {
         return(
             <li className="nav-item">
-                <a className="nav-item nav-link" data-toggle="tab" role="tab">
+                <a className="nav-item nav-link" href={'#' + this.props.lesson.id} data-toggle="tab" role="tab">
                     <div className="row">
                         <div className="col-8" align="center">
                             {this.props.lesson.title}

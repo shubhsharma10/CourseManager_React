@@ -2,6 +2,7 @@ import React from 'react'
 import ModuleService from '../services/ModuleService'
 import LessonService from '../services/LessonService'
 import LessonTab from "../components/LessonTab";
+import LessonContent from "./LessonContent"
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class LessonTabs extends React.Component {
@@ -43,7 +44,7 @@ export default class LessonTabs extends React.Component {
     }
 
     setLessons(lessons) {
-        this.setState({lessons: lessons})
+        this.setState({lessons: lessons});
     }
 
     setCourseId(courseId) {
@@ -92,15 +93,27 @@ export default class LessonTabs extends React.Component {
             return <LessonTab
                 lesson={lesson}
                 key={lesson.id}
+                id={lesson.id}
                 delete={this.deleteLesson}/>
         });
         return lessons;
     }
 
+    renderTabContent() {
+        let lessonsContent = this.state.lessons.map((lesson) => {
+            return <LessonContent
+                    courseId = {this.state.courseId}
+                    moduleId = {this.state.moduleId}
+                    lessonId = {lesson.id}
+                    lessonTitle = {lesson.title}/>
+        });
+        return lessonsContent;
+    }
+
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <ul className="nav nav-tabs lesson-tabs justify-content-right">
                     {this.renderTabs()}
                     <li style={{margin:'5px'}}>
@@ -112,6 +125,9 @@ export default class LessonTabs extends React.Component {
                         </div>
                     </li>
                 </ul>
+                <div className="tab-content">
+                    {this.renderTabContent()}
+                </div>
             </div>
         );
     }
