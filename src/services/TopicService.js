@@ -18,6 +18,9 @@ export default class TopicService {
             .then(function (response) {
                 return response.json();
             })
+            .catch(function (error) {
+                return null;
+            });
     }
 
     createTopic(courseId, moduleId, lessonId,topic) {

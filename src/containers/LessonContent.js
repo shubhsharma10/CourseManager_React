@@ -69,7 +69,10 @@ class LessonContent extends React.Component {
     findAllTopicsForLesson(courseId,moduleId,lessonId) {
         this.topicService
             .findAllTopicsForLesson(courseId,moduleId,lessonId)
-            .then((topics) => {this.setTopics(topics)});
+            .then((topics) => {
+                if(topics !== null)
+                    this.setTopics(topics)
+            });
     }
 
     updateCourseModifiedTime(){
