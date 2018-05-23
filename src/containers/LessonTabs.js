@@ -1,6 +1,7 @@
 import React from 'react'
 import ModuleService from '../services/ModuleService'
 import LessonService from '../services/LessonService'
+import CourseService from '../services/CourseService'
 import LessonTab from "../components/LessonTab";
 import LessonContent from "./LessonContent"
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
@@ -25,6 +26,7 @@ export default class LessonTabs extends React.Component {
 
         this.lessonService = LessonService.instance;
         this.moduleService = ModuleService.instance;
+        this.courseService = CourseService.instance;
     }
 
     componentDidMount() {
@@ -55,6 +57,16 @@ export default class LessonTabs extends React.Component {
         this.setState({moduleId: moduleId});
     }
 
+    updateCourseModifiedTime(){
+        this.courseService
+            .findCourseById(this.state.courseId)
+            .then((response) => {
+                response.modified = new Date().toUTCString();
+                this.courseService
+                    .updateCourse(this.state.courseId,response);
+            });
+    }
+
     createLesson() {
         bootbox.prompt({
             size: "small",
@@ -66,6 +78,9 @@ export default class LessonTabs extends React.Component {
                     let lesson = {title: result};
                     this.lessonService
                         .createLesson(this.props.courseId,this.props.moduleId, lesson)
+                        .then(() => {
+                            this.updateCourseModifiedTime();
+                        })
                         .then(() => {
                         this.findAllLessonsForCourseModule(this.props.courseId,this.props.moduleId);
                     })
@@ -81,6 +96,9 @@ export default class LessonTabs extends React.Component {
             if(result) {
                 this.lessonService
                     .deleteLesson(lessonId)
+                    .then(() => {
+                        this.updateCourseModifiedTime();
+                    })
                     .then(() => {
                         this.findAllLessonsForCourseModule(this.state.courseId,this.state.moduleId);
                     });

@@ -1,5 +1,6 @@
 import React from 'react';
 import TopicService from '../services/TopicService'
+import CourseService from '../services/CourseService'
 import TopicCard from '../components/TopicCard'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
@@ -23,6 +24,7 @@ class LessonContent extends React.Component {
         this.setTopicTitle = this.setTopicTitle.bind(this);
 
         this.topicService = TopicService.instance;
+        this.courseService = CourseService.instance;
     }
 
     componentDidMount() {
@@ -66,6 +68,16 @@ class LessonContent extends React.Component {
             .then((topics) => {this.setTopics(topics)});
     }
 
+    updateCourseModifiedTime(){
+        this.courseService
+            .findCourseById(this.state.courseId)
+            .then((response) => {
+                response.modified = new Date().toUTCString();
+                this.courseService
+                    .updateCourse(this.state.courseId,response);
+            });
+    }
+
     createTopic() {
         bootbox.prompt({
             size: "small",
@@ -77,6 +89,9 @@ class LessonContent extends React.Component {
                     let topic = {title: result};
                     this.topicService
                         .createTopic(this.state.courseId,this.state.moduleId,this.state.lessonId, topic)
+                        .then(() => {
+                            this.updateCourseModifiedTime();
+                        })
                         .then(() => {
                             this.findAllTopicsForLesson(this.state.courseId,this.state.moduleId,this.state.lessonId);
                         });
@@ -92,6 +107,9 @@ class LessonContent extends React.Component {
             if(result) {
                 this.topicService
                     .deleteTopic(topicId)
+                    .then(() => {
+                        this.updateCourseModifiedTime();
+                    })
                     .then(() => {
                         this.findAllTopicsForLesson(this.state.courseId,this.state.moduleId,this.state.lessonId);
                     });
@@ -113,7 +131,6 @@ class LessonContent extends React.Component {
     render() {
         return(
             <div className="tab-pane fade" id={this.state.lessonId}>
-                <h5>Topics for {this.props.lessonTitle}:</h5>
                 <div className="row">
                     <div className="card-columns col-10">
                         {this.renderTopics()}

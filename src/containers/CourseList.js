@@ -15,6 +15,7 @@ class CourseList extends React.Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.getCourseRows = this.getCourseRows.bind(this);
     }
 
     componentDidMount() {
@@ -31,10 +32,10 @@ class CourseList extends React.Component {
             });
     }
 
-    courseRows() {
-        return ( this.state.courses.map(function (course) {
+    getCourseRows() {
+        return ( this.state.courses.map((course) => {
             return <CourseRow course={course} key={course.id} delete={this.deleteCourse} />
-        },this));
+        }));
     }
 
     titleChanged(event) {
@@ -95,7 +96,7 @@ class CourseList extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                { this.courseRows() }
+                { this.getCourseRows() }
                 </tbody>
             </table>
             </div>
