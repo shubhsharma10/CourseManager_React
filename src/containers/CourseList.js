@@ -81,7 +81,7 @@ class CourseList extends React.Component {
                     />
                     <button className="btn btn-success btn-circle btn-xl"
                             onClick={this.createCourse}>
-                        <i class="fa fa-plus"></i>
+                        <i className="fa fa-plus"></i>
                     </button>
                 </nav>
                 <div className="container">

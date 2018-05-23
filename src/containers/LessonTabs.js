@@ -40,7 +40,10 @@ export default class LessonTabs extends React.Component {
     findAllLessonsForCourseModule(courseId,moduleId) {
         this.lessonService
             .findAllLessonsForCourseModule(courseId,moduleId)
-            .then((lessons) => {this.setLessons(lessons)});
+            .then((lessons) => {
+            if(lessons !== null)
+                this.setLessons(lessons)
+        });
     }
 
     setLessons(lessons) {

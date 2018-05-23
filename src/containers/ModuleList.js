@@ -38,7 +38,10 @@ export default class ModuleList extends Component {
     findAllModulesForCourse(courseId) {
         this.moduleService
             .findAllModulesForCourse(courseId)
-            .then((modules) => {this.setModules(modules)})
+            .then((modules) => {
+                if(modules !== null)
+                    this.setModules(modules)
+            })
             .catch(function (response) {
                 console.log('Error caught in find modules for course '+response);
             });

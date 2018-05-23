@@ -16,6 +16,9 @@ export default class ModuleService {
                 .replace('CID', courseId))
             .then(function (response) {
                 return response.json();
+            })
+            .catch(function (error) {
+                return null;
             });
     }
 
