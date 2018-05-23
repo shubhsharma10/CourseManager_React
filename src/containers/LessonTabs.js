@@ -14,9 +14,7 @@ export default class LessonTabs extends React.Component {
             courseId: '',
             activeTabIndex: '',
             lesson: { title: 'New Lesson' },
-            lessons: [
-                {title:'Lesson1', id: 2435}
-            ]
+            lessons: []
         };
 
         this.createLesson = this.createLesson.bind(this);

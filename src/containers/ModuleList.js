@@ -121,14 +121,16 @@ export default class ModuleList extends Component {
             <Router>
                 <div className="row container">
                     <div className="col-3">
-                        <input onChange={this.titleChanged}
-                               value={this.state.module.title}
-                               id="moduleTitleFId"
-                               placeholder="New Module"
-                               className="form-control"/>
-                        <button onClick={this.createModule} className="btn btn-primary btn-block">
-                            <i className="fa fa-plus"></i>
-                        </button>
+                        <div className="input-group mb-3">
+                            <input onChange={this.titleChanged}
+                                   value={this.state.module.title}
+                                   id="moduleTitleFId"
+                                   placeholder="New Module"
+                                   className="form-control"/>
+                            <button onClick={this.createModule} className="btn btn-primary btn-block">
+                                <i className="fa fa-plus"></i>
+                            </button>
+                        </div>
                         <br/>
                         <ul className="list-group moduleList">
                             {this.renderListOfModules()}
