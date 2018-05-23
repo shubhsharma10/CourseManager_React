@@ -1,4 +1,5 @@
 import React from 'react'
+import LessonTabs from './LessonTabs'
 
 export default class ModuleEditor
     extends React.Component {
@@ -32,13 +33,10 @@ export default class ModuleEditor
 
     render() {
         return (
-            <div className="row">
-                <div className="col-3">
-                </div>
-                <div className="col-9">
-                    <h1>BBCCS</h1>
-                </div>
-            </div>
+            <LessonTabs
+                courseId={this.state.courseId}
+                moduleId={this.state.moduleId}
+            />
         )
     }
 }
