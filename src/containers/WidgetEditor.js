@@ -57,7 +57,7 @@ export default class WidgetEditor
         return (
             <Provider store={this.state.widgetStore}>
                 <div id="customTabContent">
-                    <WidgetList topicId={this.state.topicId}/>
+                    {this.state.topicId !== undefined && <WidgetList topicId={this.state.topicId}/>}
                 </div>
             </Provider>
         )

@@ -79,3 +79,13 @@ tr:hover {
     text-align: left;
     padding: 10px;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#select-widget{
+    width: 50%;
+}

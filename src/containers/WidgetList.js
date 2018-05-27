@@ -7,7 +7,17 @@ class WidgetListComponent extends React.Component {
 
     constructor(props){
         super(props);
-        this.props.findAllWidgets(this.props.topicId)
+
+        this.state = {
+            topicId: ''
+        };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if(newProps.topicId !== this.state.topicId){
+            this.setState({topicId: newProps.topicId});
+            this.props.findAllWidgets(newProps.topicId);
+        }
     }
 
 
