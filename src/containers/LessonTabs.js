@@ -1,9 +1,12 @@
 import React from 'react'
+import {Route, Switch } from 'react-router-dom'
 import ModuleService from '../services/ModuleService'
 import LessonService from '../services/LessonService'
 import CourseService from '../services/CourseService'
 import LessonTab from "../components/LessonTab";
 import LessonContent from "./LessonContent"
+import LessonContentEditor from './LessonContentEditor'
+import TopicEditor from './TopicEditor'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class LessonTabs extends React.Component {
@@ -111,6 +114,8 @@ export default class LessonTabs extends React.Component {
     renderTabs() {
         let lessons = this.state.lessons.map((lesson)=> {
             return <LessonTab
+                courseId={this.props.courseId}
+                moduleId={this.props.moduleId}
                 lesson={lesson}
                 key={lesson.id}
                 id={lesson.id}
@@ -146,8 +151,13 @@ export default class LessonTabs extends React.Component {
                         </div>
                     </li>
                 </ul>
-                <div className="tab-content">
-                    {this.renderTabContent()}
+                <div>
+                    <Switch>
+                        <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                               component={LessonContentEditor}/>
+                        <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                               component={TopicEditor}/>
+                    </Switch>
                 </div>
             </div>
         );

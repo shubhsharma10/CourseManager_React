@@ -128,6 +128,9 @@ class LessonContent extends React.Component {
     renderTopics() {
         let topics = this.state.topics.map((topic)=> {
             return <TopicCard
+                courseId = {this.props.courseId}
+                moduleId = {this.props.moduleId}
+                lessonId = {this.props.lessonId}
                 topic={topic}
                 key={topic.id}
                 id={topic.id}

@@ -1,11 +1,14 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 class LessonTab extends React.Component {
 
     render() {
         return(
-            <li className="nav-item">
-                <a className="nav-item nav-link" href={'#' + this.props.lesson.id} data-toggle="tab" role="tab">
+            <li>
+                <Link className="nav-item nav-link"
+                      to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}
+                      role="tab">
                     <div className="row">
                         <div className="col-8" align="center">
                             {this.props.lesson.title}
@@ -17,7 +20,7 @@ class LessonTab extends React.Component {
                             </button>
                         </div>
                     </div>
-                </a>
+                </Link>
             </li>
         );
     }
