@@ -4,9 +4,8 @@ import ModuleService from '../services/ModuleService'
 import LessonService from '../services/LessonService'
 import CourseService from '../services/CourseService'
 import LessonTab from "../components/LessonTab";
-import LessonContent from "./LessonContent"
 import LessonContentEditor from './LessonContentEditor'
-import TopicEditor from './TopicEditor'
+import TopicEditor from './WidgetEditor'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class LessonTabs extends React.Component {
@@ -123,19 +122,6 @@ export default class LessonTabs extends React.Component {
         });
         return lessons;
     }
-
-    renderTabContent() {
-        let lessonsContent = this.state.lessons.map((lesson) => {
-            return <LessonContent
-                    courseId = {this.state.courseId}
-                    moduleId = {this.state.moduleId}
-                    lessonId = {lesson.id}
-                    key = {lesson.id}
-                    lessonTitle = {lesson.title}/>
-        });
-        return lessonsContent;
-    }
-
 
     render() {
         return (

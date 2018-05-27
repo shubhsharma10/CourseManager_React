@@ -1,6 +1,10 @@
 import React from 'react'
+import {Provider} from 'react-redux'
+import { createStore } from 'redux'
+import {WidgetReducer} from '../reducers/WidgetReducer'
+import {WidgetList} from './WidgetList'
 
-export default class TopicEditor
+export default class WidgetEditor
     extends React.Component {
     constructor(props) {
         super(props);
@@ -9,13 +13,15 @@ export default class TopicEditor
             moduleId: '',
             lessonId: '',
             topicId: '',
-            widgets: []
+            widgetStore: ''
         };
 
         this.setCourseID = this.setCourseID.bind(this);
         this.setModuleID = this.setModuleID.bind(this);
         this.setLessonID = this.setLessonID.bind(this);
         this.setTopicID = this.setTopicID.bind(this);
+
+        this.state.widgetStore = createStore(WidgetReducer);
     }
 
     componentDidMount() {
@@ -49,9 +55,11 @@ export default class TopicEditor
 
     render() {
         return (
-            <div id="customTabContent">
-                <h3>Entering Topic Editor for Topic: {this.state.topicId}</h3>
-            </div>
+            <Provider store={this.state.widgetStore}>
+                <div id="customTabContent">
+                    <WidgetList topicId={this.state.topicId}/>
+                </div>
+            </Provider>
         )
     }
 }

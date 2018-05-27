@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import CourseList from './CourseList'
 import CourseEditor from './CourseEditor'
-import TopicEditor from './TopicEditor'
+import TopicEditor from './WidgetEditor'
 import LessonContentEditor from './LessonContentEditor'
 import LessonContent from './LessonContent'
 import {BrowserRouter as Router,Route } from 'react-router-dom'
