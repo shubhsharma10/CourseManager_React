@@ -49,8 +49,8 @@ export default class TopicEditor
 
     render() {
         return (
-            <div>
-                <h3>Entering Topic Editor for Topic: {this.props.topicId}</h3>
+            <div id="customTabContent">
+                <h3>Entering Topic Editor for Topic: {this.state.topicId}</h3>
             </div>
         )
     }

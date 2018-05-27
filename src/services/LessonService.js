@@ -41,6 +41,16 @@ export default class LessonService {
             });
     }
 
+    findLessonById(lessonId) {
+        return fetch(GEN_LESSON_API_URL + '/' + lessonId)
+            .then((response) => {
+                return response.json();
+            })
+            .catch(function (error) {
+                return null;
+            });
+    }
+
     static get instance() {
         if(!this[_singleton])
             this[_singleton] = new LessonService(_singleton);

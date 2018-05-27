@@ -141,7 +141,7 @@ class LessonContent extends React.Component {
 
     render() {
         return(
-            <div className="tab-pane fade" id={this.state.lessonId}>
+            <div id="customTabContent">
                 <div className="row">
                     <div className="card-columns col-10">
                         {this.renderTopics()}
