@@ -3,8 +3,9 @@ import {Provider} from 'react-redux'
 import { createStore } from 'redux'
 import {WidgetReducer} from '../reducers/WidgetReducer'
 import {WidgetList} from './WidgetList'
+import {withRouter} from 'react-router-dom'
 
-export default class WidgetEditor
+class WidgetEditorWihoutRouter
     extends React.Component {
     constructor(props) {
         super(props);
@@ -54,6 +55,7 @@ export default class WidgetEditor
     }
 
     render() {
+        console.log(this.props.location.pathname);
         return (
             <Provider store={this.state.widgetStore}>
                 <div id="customTabContent">
@@ -63,3 +65,5 @@ export default class WidgetEditor
         )
     }
 }
+
+export const WidgetEditor = withRouter(WidgetEditorWihoutRouter);

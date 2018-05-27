@@ -5,7 +5,7 @@ import LessonService from '../services/LessonService'
 import CourseService from '../services/CourseService'
 import LessonTab from "../components/LessonTab";
 import LessonContentEditor from './LessonContentEditor'
-import TopicEditor from './WidgetEditor'
+import {WidgetEditor} from './WidgetEditor'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 
 export default class LessonTabs extends React.Component {
@@ -142,7 +142,7 @@ export default class LessonTabs extends React.Component {
                         <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                                component={LessonContentEditor}/>
                         <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
-                               component={TopicEditor}/>
+                               component={WidgetEditor}/>
                     </Switch>
                 </div>
             </div>

@@ -6,7 +6,6 @@ const HeadingComponent = ({widget,preview,headingSizeChanged,headingTextChanged}
     let headingSize;
     let widgetName;
     let headingText;
-    console.log('heading componentn');
     return(
         <div>
             <div hidden={preview} className="container">
