@@ -42,6 +42,14 @@ export const imageURLChanged = (dispatch,widgetId,newURL) => {
     });
 };
 
+export const linkURLChanged = (dispatch,widgetId,newURL) => {
+    dispatch({
+        type: constants.LINK_URL_CHANGED,
+        id: widgetId,
+        href: newURL
+    });
+};
+
 export const widgetNameChanged = (dispatch,widgetId,name) => {
     dispatch({
         type: constants.WIDGET_NAME_CHANGED,

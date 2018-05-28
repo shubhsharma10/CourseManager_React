@@ -24,6 +24,16 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     return Object.assign({}, widget);
                 })
             };
+        case constants.LINK_URL_CHANGED:
+            return {
+                ...state,
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.href = action.href;
+                    }
+                    return Object.assign({}, widget);
+                })
+            };
         case constants.WIDGET_NAME_CHANGED:
             return {
                 ...state,

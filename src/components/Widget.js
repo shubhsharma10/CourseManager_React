@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Heading} from './Heading'
 import {Image} from './Image'
 import {Paragraph} from './Paragraph'
+import {Link} from './Link'
 import * as actions from '../actions/WidgetActions'
 
 const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
@@ -26,6 +27,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
                                 onChange={() => changeWidgetType(widget.id,select.value)}>
                             <option>Heading</option>
                             <option>Paragraph</option>
+                            <option>Link</option>
                             <option>List</option>
                             <option>Image</option>
                         </select>
@@ -45,6 +47,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
                 {widget.widgetType === 'Heading' && <Heading widget={widget}/>}
                 {widget.widgetType === 'Image' && <Image widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <Paragraph widget={widget}/>}
+                {widget.widgetType === 'Link' && <Link widget={widget}/>}
             </div>
         </li>
     );
