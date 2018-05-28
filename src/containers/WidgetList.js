@@ -28,7 +28,7 @@ class WidgetListComponent extends React.Component {
                     <div className="col-xl-9 col-md-5 col-sm-0 col-lg-8">
                     </div>
                     <div className="col-xl-3 col-md-7 col-sm-12 col-lg-4">
-                        <button className="btn btn-primary float-right"
+                        <button className="btn btn-primary ml-2 float-right"
                                 onClick={this.props.previewWidgets}>
                             Preview
                         </button>
