@@ -1,7 +1,4 @@
-const TOPIC_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
-const GEN_TOPIC_API_URL =
-    'http://localhost:8080/api/topic';
+import * as constants from '../constants/index'
 
 let _singleton = Symbol();
 export default class TopicService {
@@ -11,7 +8,7 @@ export default class TopicService {
     }
 
     findAllTopicsForLesson(courseId,moduleId,lessonId) {
-        return fetch(TOPIC_API_URL
+        return fetch(constants.TOPIC_API_URL
             .replace('CID', courseId)
             .replace('MID', moduleId)
             .replace('LID', lessonId))
@@ -24,7 +21,7 @@ export default class TopicService {
     }
 
     createTopic(courseId, moduleId, lessonId,topic) {
-        return fetch(TOPIC_API_URL
+        return fetch(constants.TOPIC_API_URL
                 .replace('CID', courseId)
                 .replace('MID', moduleId)
                 .replace('LID', lessonId),
@@ -39,7 +36,7 @@ export default class TopicService {
     }
 
     deleteTopic(topicId) {
-        return fetch(GEN_TOPIC_API_URL + '/' + topicId,
+        return fetch(constants.GEN_TOPIC_API_URL + '/' + topicId,
             {
                 method: 'DELETE'
             });

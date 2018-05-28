@@ -1,6 +1,6 @@
+import * as constants from '../constants/index'
+
 let _singleton = Symbol();
-const COURSE_API_URL =
-    'http://localhost:8080/api/course';
 
 class CourseService {
 
@@ -16,7 +16,7 @@ class CourseService {
     }
 
     createCourse(course) {
-        return fetch(COURSE_API_URL, {
+        return fetch(constants.COURSE_API_URL, {
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
@@ -27,21 +27,21 @@ class CourseService {
         })}
 
     deleteCourse(courseId) {
-        return fetch(COURSE_API_URL + '/' + courseId,
+        return fetch(constants.COURSE_API_URL + '/' + courseId,
             {
                 method: 'DELETE'
             });
     }
 
     findCourseById(courseId) {
-        return fetch(COURSE_API_URL + '/' + courseId)
+        return fetch(constants.COURSE_API_URL + '/' + courseId)
             .then((response) => {
                 return response.json();
             });
     }
 
     updateCourse(courseId,course) {
-        return fetch(COURSE_API_URL + '/' + courseId, {
+        return fetch(constants.COURSE_API_URL + '/' + courseId, {
             method: 'put',
             body: JSON.stringify(course),
             headers: {
@@ -58,7 +58,7 @@ class CourseService {
     }
 
     findAllCourses() {
-        return fetch(COURSE_API_URL)
+        return fetch(constants.COURSE_API_URL)
             .then(function(response){
                 return response.json();
             });

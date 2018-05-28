@@ -1,7 +1,4 @@
-const LESSON_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson';
-const GEN_LESSON_API_URL =
-    'http://localhost:8080/api/lesson';
+import * as constants from '../constants/index'
 
 let _singleton = Symbol();
 export default class LessonService {
@@ -11,7 +8,7 @@ export default class LessonService {
     }
 
     findAllLessonsForCourseModule(courseId,moduleId) {
-        return fetch(LESSON_API_URL
+        return fetch(constants.LESSON_API_URL
             .replace('CID', courseId)
             .replace('MID', moduleId))
             .then(function (response) {
@@ -23,7 +20,7 @@ export default class LessonService {
     }
 
     createLesson(courseId, moduleId, lesson) {
-        return fetch(LESSON_API_URL
+        return fetch(constants.LESSON_API_URL
                 .replace('CID', courseId)
                 .replace('MID', moduleId),
             {
@@ -35,14 +32,14 @@ export default class LessonService {
     }
 
     deleteLesson(lessonId) {
-        return fetch(GEN_LESSON_API_URL + '/' + lessonId,
+        return fetch(constants.GEN_LESSON_API_URL + '/' + lessonId,
             {
                 method: 'DELETE'
             });
     }
 
     findLessonById(lessonId) {
-        return fetch(GEN_LESSON_API_URL + '/' + lessonId)
+        return fetch(constants.GEN_LESSON_API_URL + '/' + lessonId)
             .then((response) => {
                 return response.json();
             })

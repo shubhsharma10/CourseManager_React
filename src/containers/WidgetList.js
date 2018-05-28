@@ -15,7 +15,6 @@ class WidgetListComponent extends React.Component {
 
     componentWillReceiveProps(newProps) {
         if(newProps.topicId !== this.state.topicId){
-            console.log('reached here');
             this.setState({topicId: newProps.topicId});
             this.props.findAllWidgets(newProps.topicId);
         }

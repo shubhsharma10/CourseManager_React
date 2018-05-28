@@ -55,7 +55,6 @@ class WidgetEditorWihoutRouter
     }
 
     render() {
-        console.log(this.props.location.pathname);
         return (
             <Provider store={this.state.widgetStore}>
                 <div id="customTabContent">

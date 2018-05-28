@@ -124,7 +124,6 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
             return JSON.parse(JSON.stringify(newState));
 
         case constants.SAVE:
-            alert('Saved Widgets to database');
             fetch(constants.WIDGET_API_URL.replace('TID', state.parentTopicId)+'/save', {
                 method: 'post',
                 body: JSON.stringify(resetOrder(state.widgets)),
