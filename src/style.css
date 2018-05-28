@@ -86,6 +86,10 @@ ul {
     margin: 0;
 }
 
+.listText{
+    resize: none;
+}
+
 #select-widget{
     width: 50%;
 }

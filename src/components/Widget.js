@@ -4,6 +4,7 @@ import {Heading} from './Heading'
 import {Image} from './Image'
 import {Paragraph} from './Paragraph'
 import {Link} from './Link'
+import {List} from './List'
 import * as actions from '../actions/WidgetActions'
 
 const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
@@ -48,6 +49,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
                 {widget.widgetType === 'Image' && <Image widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <Paragraph widget={widget}/>}
                 {widget.widgetType === 'Link' && <Link widget={widget}/>}
+                {widget.widgetType === 'List' && <List widget={widget}/>}
             </div>
         </li>
     );

@@ -25,7 +25,6 @@ class WidgetListComponent extends React.Component {
     render() {
         return(
             <div className="container">
-                <h1>Widget List {this.props.widgets.length}</h1>
                 <div className="row justify-content-end">
                     <div className="col-md-4 col-sm-11 col-lg-4">
                         <button hidden={this.props.preview}

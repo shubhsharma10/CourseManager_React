@@ -50,6 +50,14 @@ export const linkURLChanged = (dispatch,widgetId,newURL) => {
     });
 };
 
+export const listTypeLChanged = (dispatch,widgetId,newType) => {
+    dispatch({
+        type: constants.LIST_TYPE_CHANGED,
+        id: widgetId,
+        listType: newType
+    });
+};
+
 export const widgetNameChanged = (dispatch,widgetId,name) => {
     dispatch({
         type: constants.WIDGET_NAME_CHANGED,

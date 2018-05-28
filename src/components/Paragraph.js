@@ -31,7 +31,7 @@ const ParagraphComponent = ({widget,preview,paragraphTextChanged,widgetNameChang
                     <h3>Preview</h3>
                 </div>
                 <div>
-                    <h6>{widget.text}</h6>
+                    <p>{widget.text}</p>
                 </div>
             </div>
         </div>);
