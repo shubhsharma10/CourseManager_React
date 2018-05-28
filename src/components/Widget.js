@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Heading} from './Heading'
 import {Image} from './Image'
+import {Paragraph} from './Paragraph'
 import * as actions from '../actions/WidgetActions'
 
 const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
@@ -43,6 +44,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
             <div>
                 {widget.widgetType === 'Heading' && <Heading widget={widget}/>}
                 {widget.widgetType === 'Image' && <Image widget={widget}/>}
+                {widget.widgetType === 'Paragraph' && <Paragraph widget={widget}/>}
             </div>
         </li>
     );
