@@ -38,6 +38,16 @@ export const moveOrderDown = (widgets,widgetId) => {
     }
 };
 
+export const resetOrder = (widgets) => {
+    let counter = 0;
+    widgets.map(widget => {
+        widget.widgetOrder = counter;
+        counter++;
+        return widget;
+    });
+    return widgets;
+};
+
 export const WidgetReducer = (state={widgets: [],preview: false},action) => {
     switch (action.type) {
         case constants.HEADING_TEXT_CHANGED:
@@ -117,7 +127,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
             alert('Saved Widgets to database');
             fetch(constants.WIDGET_API_URL.replace('TID', state.parentTopicId)+'/save', {
                 method: 'post',
-                body: JSON.stringify(state.widgets),
+                body: JSON.stringify(resetOrder(state.widgets)),
                 headers: {
                     'content-type': 'application/json'
                 }
