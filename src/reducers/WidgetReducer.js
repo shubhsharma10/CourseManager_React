@@ -40,7 +40,7 @@ export const moveOrderDown = (widgets,widgetId) => {
 };
 
 export const resetOrder = (widgets) => {
-    let counter = 0;
+    let counter = 1;
     widgets.map(widget => {
         widget.widgetOrder = counter;
         counter++;
@@ -132,6 +132,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     'content-type': 'application/json'
                 }
             });
+
             bootbox.alert("Saved widgets to the database!");
             return state;
 
