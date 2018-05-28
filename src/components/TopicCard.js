@@ -5,15 +5,12 @@ export default class TopicCard extends React.Component {
 
     render() {
         return(
-            <div>
-               <Link className="card topic-card"
-                     to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}
-                     style={{width: "10rem"}}>
-                   <div className="card-body">
-                       <h5 className="card-title">{this.props.topic.title}</h5>
-                   </div>
+            <div className="card">
+               <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}
+                     >
+                   <h5 className="card-header">{this.props.topic.title}</h5>
                    <button className="btn btn-danger float-right btn-sm" onClick={() =>
-                                {this.props.delete(this.props.topic.id,this.props.topic.title)}}>
+                   {this.props.delete(this.props.topic.id,this.props.topic.title)}}>
                        <i className="fa fa-times"/>
                    </button>
                </Link>
