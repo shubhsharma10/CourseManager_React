@@ -114,7 +114,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                         size: '2',
                         text: 'New Widget',
                         name: '',
-                        widgetOrder: 12,
+                        widgetOrder: state.widgets.length + 1,
                         listType: 'Unordered'
                     }],
             };

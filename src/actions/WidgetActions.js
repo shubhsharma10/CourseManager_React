@@ -13,7 +13,7 @@ export const findAllWidgets = (dispatch,topicId) => {
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL,
-            widgets: widgets,
+            widgets: widgets.sort((a, b) => a.widgetOrder - b.widgetOrder),
             topicId: topicId
         }));
 };
