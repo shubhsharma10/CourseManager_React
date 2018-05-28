@@ -11,7 +11,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrder
     let select;
     return(
         <li>
-            <div hidden={preview} className="container well">
+            <div hidden={preview} className="container" id="widgetControlRow">
                 <div className="row justify-content-end">
                     <div className="col-4">
                     </div>
@@ -46,7 +46,7 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrder
 
 
             </div>
-            <div>
+            <div id="sunkenDiv">
                 {widget.widgetType === 'Heading' && <Heading widget={widget}/>}
                 {widget.widgetType === 'Image' && <Image widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <Paragraph widget={widget}/>}
