@@ -6,20 +6,22 @@ export default class ModuleListItem
 
     render() {
         return (
-            <div>
-            <Link className = {this.props.active ? 'list-group-item active': 'list-group-item'}
+            <li className = {this.props.active ? 'list-group-item active activeLI': 'list-group-item'}>
+                <div>
+                <Link
                 onClick={() => this.props.selectModule(this.props.module.id)}
                   to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                {this.props.module.title}
-                <span className="float-right">
+                    {this.props.module.title}
+                </Link>
+                <div className="float-right">
                     <button className="btn btn-sm btn-danger"
                             onClick={() =>
                             {this.props.delete(this.props.module.id,this.props.module.title)}}>
                         <i className="fa fa-times" aria-hidden="true"></i>
                     </button>
-                </span>
-            </Link>
-            </div>
+                </div>
+                </div>
+            </li>
         );
     }
 }

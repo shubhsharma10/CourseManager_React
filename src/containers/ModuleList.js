@@ -134,11 +134,12 @@ export default class ModuleList extends Component {
                             <button onClick={this.createModule} className="btn btn-primary btn-block">
                                 <i className="fa fa-plus"></i>
                             </button>
+                            <ul className="list-group moduleList">
+                                {this.renderListOfModules()}
+                            </ul>
                         </div>
                         <br/>
-                        <ul className="list-group moduleList">
-                            {this.renderListOfModules()}
-                        </ul>
+
                     </div>
                     <div className="col-9">
                         <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}/>
