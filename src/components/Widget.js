@@ -12,19 +12,18 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrder
     return(
         <li>
             <div hidden={preview} className="container" id="widgetControlRow">
-                <div className="row justify-content-end">
-                    <div className="col-4">
+                <div className="row">
+                    <div className="col-xl-9 col-md-5 col-sm-0 col-lg-7">
                     </div>
-                    <div className="col-4">
-                        <button className="btn-primary"
-                                onClick={()=> moveOrderUp(widget.id)}>
-                            <i className="fa fa-arrow-up"/>
+                    <div className="col-xl-3 col-md-7 col-sm-12 col-lg-5">
+                        <button className="btn-danger float-right"
+                                onClick={e => {
+                                    e.preventDefault();
+                                    deleteWidget(widget.id);
+                                }}>
+                            <i className="fa fa-times"/>
                         </button>
-                        <button className="btn-primary"
-                                onClick={()=> moveOrderDown(widget.id)}>
-                            <i className="fa fa-arrow-down"/>
-                        </button>
-                        <select className="select-widget"
+                        <select className="form-control-sm float-right"
                                 value={widget.widgetType}
                                 ref={node => select = node}
                                 onChange={() => changeWidgetType(widget.id,select.value)}>
@@ -34,13 +33,16 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrder
                             <option>List</option>
                             <option>Image</option>
                         </select>
-                        <button className="btn-danger"
-                                onClick={e => {
-                                        e.preventDefault();
-                                        deleteWidget(widget.id);
-                            }}>
-                            <i className="fa fa-times"/>
+                        <button className="btn-primary float-right"
+                                onClick={()=> moveOrderDown(widget.id)}>
+                            <i className="fa fa-arrow-down"/>
                         </button>
+                        <button className="btn-primary float-right"
+                                onClick={()=> moveOrderUp(widget.id)}>
+                            <i className="fa fa-arrow-up"/>
+                        </button>
+
+
                     </div>
                 </div>
 

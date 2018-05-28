@@ -24,16 +24,18 @@ class WidgetListComponent extends React.Component {
     render() {
         return(
             <div className="container widgetListContainer">
-                <div className="row justify-content-end">
-                    <div className="col-md-4 col-sm-11 col-lg-4">
-                        <button hidden={this.props.preview}
-                                className="btn btn-success mr-2 mb-2"
-                                onClick={this.props.saveWidgets}>
-                            Save
-                        </button>
-                        <button className="btn btn-primary mb-2"
+                <div className="row">
+                    <div className="col-xl-9 col-md-5 col-sm-0 col-lg-8">
+                    </div>
+                    <div className="col-xl-3 col-md-7 col-sm-12 col-lg-4">
+                        <button className="btn btn-primary float-right"
                                 onClick={this.props.previewWidgets}>
                             Preview
+                        </button>
+                        <button hidden={this.props.preview}
+                                className="btn btn-success float-right"
+                                onClick={this.props.saveWidgets}>
+                            Save
                         </button>
                     </div>
                 </div>
@@ -45,7 +47,7 @@ class WidgetListComponent extends React.Component {
                 </div>
                 <div className="row justify-content-end">
                     <div className="col-md-4 col-sm-11 col-lg-4">
-                        <button className="btn btn-success mt-2"
+                        <button className="btn btn-success float-right"
                                 onClick={() => this.props.addWidget()}>
                             Add Widget
                         </button>

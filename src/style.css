@@ -90,9 +90,6 @@ ul {
     resize: none;
 }
 
-#select-widget{
-    width: 50%;
-}
 
 
 
@@ -104,4 +101,8 @@ ul {
 
 #widgetControlRow{
     margin-top: 5px;
+}
+
+#rightAlign{
+    text-align: right;
 }
