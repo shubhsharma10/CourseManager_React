@@ -13,7 +13,8 @@ export const findAllWidgets = (dispatch,topicId) => {
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL,
-            widgets: widgets
+            widgets: widgets,
+            topicId: topicId
         }));
 };
 
@@ -30,5 +31,41 @@ export const headingTextChanged = (dispatch,widgetId,newText) => {
         type: constants.HEADING_TEXT_CHANGED,
         id: widgetId,
         text: newText
+    });
+};
+
+export const imageURLChanged = (dispatch,widgetId,newURL) => {
+    dispatch({
+        type: constants.IMAGE_URL_CHANGED,
+        id: widgetId,
+        src: newURL
+    });
+};
+
+export const widgetNameChanged = (dispatch,widgetId,name) => {
+    dispatch({
+        type: constants.WIDGET_NAME_CHANGED,
+        id: widgetId,
+        name: name
+    });
+};
+
+export const changeWidgetType = (dispatch,widgetId,newType) => {
+    dispatch({
+        type: constants.SELECT_WIDGET_TYPE,
+        id: widgetId,
+        widgetType: newType
+    });
+};
+
+export const saveWidgets = dispatch => {
+    dispatch({
+        type: constants.SAVE
+    });
+};
+
+export const previewWidgets = dispatch => {
+    dispatch({
+        type: constants.PREVIEW
     });
 };

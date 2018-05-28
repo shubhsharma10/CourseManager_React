@@ -15,6 +15,7 @@ class WidgetListComponent extends React.Component {
 
     componentWillReceiveProps(newProps) {
         if(newProps.topicId !== this.state.topicId){
+            console.log('reached here');
             this.setState({topicId: newProps.topicId});
             this.props.findAllWidgets(newProps.topicId);
         }
@@ -27,8 +28,15 @@ class WidgetListComponent extends React.Component {
                 <h1>Widget List {this.props.widgets.length}</h1>
                 <div className="row justify-content-end">
                     <div className="col-md-4 col-sm-11 col-lg-4">
-                        <button hidden={this.props.preview} className="btn btn-success mr-2 mb-2">Save</button>
-                        <button className="btn btn-primary mb-2" data-toggle="button">Preview</button>
+                        <button hidden={this.props.preview}
+                                className="btn btn-success mr-2 mb-2"
+                                onClick={this.props.saveWidgets}>
+                            Save
+                        </button>
+                        <button className="btn btn-primary mb-2"
+                                onClick={this.props.previewWidgets}>
+                            Preview
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -53,12 +61,15 @@ class WidgetListComponent extends React.Component {
 // connect parameters
 const mapStateToProps = (state) => ({
     widgets: state.widgets,
-    preview: state.preview
+    preview: state.preview,
+    parentTopicId: state.parentTopicId
 });
 
 const mapDispatchToProps = (dispatch) => ({
     findAllWidgets: (topicId) => actions.findAllWidgets(dispatch,topicId),
-    addWidget: () => actions.addWidget(dispatch)
+    addWidget: () => actions.addWidget(dispatch),
+    saveWidgets: () => actions.saveWidgets(dispatch),
+    previewWidgets: () => actions.previewWidgets(dispatch)
 
 });
 

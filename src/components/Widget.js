@@ -2,16 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Heading} from './Heading'
 import {Image} from './Image'
+import * as actions from '../actions/WidgetActions'
 
-const WidgetComponent = ({widget}) => {
+const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
     let select;
     return(
         <li>
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <h2>{widget.WidgetType} Widget</h2>
-                    </div>
+            <div hidden={preview} className="container well">
+                <div className="row justify-content-end">
                     <div className="col-4">
                     </div>
                     <div className="col-4">
@@ -21,7 +19,10 @@ const WidgetComponent = ({widget}) => {
                         <button className="btn-primary">
                             <i className="fa fa-arrow-down"/>
                         </button>
-                        <select className="select-widget" value={widget.widgetType} ref={node => select = node}>
+                        <select className="select-widget"
+                                value={widget.widgetType}
+                                ref={node => select = node}
+                                onChange={() => changeWidgetType(widget.id,select.value)}>
                             <option>Heading</option>
                             <option>Paragraph</option>
                             <option>List</option>
@@ -30,7 +31,7 @@ const WidgetComponent = ({widget}) => {
                         <button className="btn-danger"
                                 onClick={e => {
                                         e.preventDefault();
-                                        //deleteWidget(widget.id);
+                                        deleteWidget(widget.id);
                             }}>
                             <i className="fa fa-times"/>
                         </button>
@@ -40,12 +41,20 @@ const WidgetComponent = ({widget}) => {
 
             </div>
             <div>
-                {widget.WidgetType === 'Heading' && <Heading widget={widget}/>}
-                {widget.WidgetType === 'Image' && <Image/>}
+                {widget.widgetType === 'Heading' && <Heading widget={widget}/>}
+                {widget.widgetType === 'Image' && <Image widget={widget}/>}
             </div>
         </li>
     );
 };
 
+const dispatchToPropsMapper = (dispatch) => ({
+    deleteWidget: (widgetId) => actions.deleteWidget(dispatch,widgetId),
+    changeWidgetType: (widgetId,newType) => actions.changeWidgetType(dispatch,widgetId,newType)
+});
 
-export const Widget = connect()(WidgetComponent);
+const mapStateToProps = state => ({
+    preview: state.preview
+});
+
+export const Widget = connect(mapStateToProps,dispatchToPropsMapper)(WidgetComponent);

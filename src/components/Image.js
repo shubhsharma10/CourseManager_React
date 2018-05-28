@@ -1,25 +1,46 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import * as actions from '../actions/WidgetActions'
 
-const ImageComponent = ({widget,preview}) => {
-    let inputElem;
+const ImageComponent = ({widget,preview,imageURLChanged,widgetNameChanged}) => {
+    let inputURL;
+    let widgetName;
 
     return(
         <div>
-            <div hidden={preview}>
-                <h2>Image {widget.size}</h2>
-                <input ref={node => inputElem = node}
-                       value="Enter image link here"/>
+            <div hidden={preview} className="container">
+                <div className="row">
+                    <h3>{widget.widgetType} widget</h3>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="imageURL">Image URL:</label>
+                    <input type="url" className="form-control" id="imageURL" placeholder="http://lorempixel.com/300/150"
+                           onChange={()=> imageURLChanged(widget.id,inputURL.value)}
+                           ref={node => inputURL = node}
+                           value={widget.src}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="widgetName">Widget Name:</label>
+                    <input type="text" className="form-control" id="widgetName" placeholder="Widget Name"
+                           value={widget.name}
+                           onChange={()=> widgetNameChanged(widget.id,widgetName.value)}
+                           ref={node => widgetName = node}/>
+                </div>
             </div>
-            <div>
-                {widget.size === '1' && <h1>{widget.text}</h1>}
-                {widget.size === '2' && <h2>{widget.text}</h2>}
-                {widget.size === '3' && <h3>{widget.text}</h3>}
+            <div className="container">
+                <div hidden={preview}>
+                    <h3>Preview</h3>
+                </div>
+                <div>
+                    {widget.src !== undefined && <img src={widget.src} className="img-thumbnail"/>}
+                </div>
             </div>
         </div>);
 };
 
 const dispatchToPropsMapper = (dispatch) => ({
+    imageURLChanged: (widgetId,newURL) => actions.imageURLChanged(dispatch,widgetId,newURL),
+    widgetNameChanged: (widgetId,name) => actions.widgetNameChanged(dispatch,widgetId,name)
 });
 
 const mapStateToProps = state => ({

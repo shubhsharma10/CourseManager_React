@@ -1,9 +1,12 @@
 import * as constants from '../constants/index'
 
+
+
 export const WidgetReducer = (state={widgets: [],preview: false},action) => {
     switch (action.type) {
         case constants.HEADING_TEXT_CHANGED:
             return {
+                ...state,
                 widgets: state.widgets.map(widget => {
                     if(widget.id === action.id) {
                         widget.text = action.text;
@@ -11,8 +14,29 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     return Object.assign({}, widget);
                 })
             };
+        case constants.IMAGE_URL_CHANGED:
+            return {
+                ...state,
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.src = action.src;
+                    }
+                    return Object.assign({}, widget);
+                })
+            };
+        case constants.WIDGET_NAME_CHANGED:
+            return {
+                ...state,
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.name = action.name;
+                    }
+                    return Object.assign({}, widget);
+                })
+            };
         case constants.HEADING_SIZE_CHANGED:
             return {
+                ...state,
                 widgets: state.widgets.map(widget => {
                     if(widget.id === action.id) {
                         widget.size = action.size;
@@ -22,6 +46,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
             };
         case constants.SELECT_WIDGET_TYPE:
             let newState =  {
+                ...state,
                 widgets:
                     state.widgets.filter((widget)=>
                     {
@@ -34,7 +59,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
 
         case constants.SAVE:
             alert('Saved Widgets to database');
-            fetch('https://cs5610-summer1-2018-ssharma.herokuapp.com/api/widget/save', {
+            fetch(constants.WIDGET_API_URL.replace('TID', state.parentTopicId)+'/save', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
@@ -47,21 +72,35 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
             newState = Object.assign({},state);
             newState.preview = !newState.preview;
             return newState;
+
         case constants.FIND_ALL:
-            return{widgets: action.widgets};
+            return {
+                widgets: action.widgets.map(widget => {
+                        widget.size = widget.size.toString();
+                        return widget;
+                    }
+                ),
+                preview: false,
+                parentTopicId: action.topicId};
 
         case constants.ADD:
-            return {widgets:
+            return {
+                ...state,
+                widgets:
                 [...state.widgets,
                     {
                         id: state.widgets.length+4,
-                        WidgetType: 'Heading',
+                        widgetType: 'Heading',
                         size: '2',
-                        text: 'New Widget'
+                        text: 'New Widget',
+                        name: '',
+                        widgetOrder: 12
                     }],
             };
         case constants.DELETE:
-            return {widgets:
+            return {
+                ...state,
+                widgets:
                 state.widgets.filter(widget => widget.id !== action.id)};
         default:
             return state;
