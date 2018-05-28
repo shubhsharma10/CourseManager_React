@@ -1,4 +1,5 @@
 import * as constants from '../constants/index'
+import bootbox from '../../node_modules/bootbox.js/bootbox';
 
 export const moveOrderUp = (widgets,widgetId) => {
     let index = widgets.map(function (widget) { return widget.id; }).indexOf(widgetId);
@@ -131,6 +132,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     'content-type': 'application/json'
                 }
             });
+            bootbox.alert("Saved widgets to the database!");
             return state;
 
         case constants.PREVIEW:

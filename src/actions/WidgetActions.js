@@ -1,11 +1,17 @@
 import * as constants from '../constants/index'
+import bootbox from '../../node_modules/bootbox.js/bootbox';
 
 export const addWidget = (dispatch) => {
     dispatch({type: constants.ADD});
 };
 
 export const deleteWidget = (dispatch,id) => {
-    dispatch({type: constants.DELETE, id: id});
+    let confirmMessage = 'Are you sure, you want to delete ?';
+    bootbox.confirm(confirmMessage,(result) => {
+        if (result) {
+            dispatch({type: constants.DELETE, id: id});
+        }
+    });
 };
 
 export const findAllWidgets = (dispatch,topicId) => {
