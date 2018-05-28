@@ -7,7 +7,7 @@ import {Link} from './Link'
 import {List} from './List'
 import * as actions from '../actions/WidgetActions'
 
-const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
+const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrderUp,moveOrderDown}) => {
     let select;
     return(
         <li>
@@ -16,10 +16,12 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
                     <div className="col-4">
                     </div>
                     <div className="col-4">
-                        <button className="btn-primary">
+                        <button className="btn-primary"
+                                onClick={()=> moveOrderUp(widget.id)}>
                             <i className="fa fa-arrow-up"/>
                         </button>
-                        <button className="btn-primary">
+                        <button className="btn-primary"
+                                onClick={()=> moveOrderDown(widget.id)}>
                             <i className="fa fa-arrow-down"/>
                         </button>
                         <select className="select-widget"
@@ -57,7 +59,9 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType}) => {
 
 const dispatchToPropsMapper = (dispatch) => ({
     deleteWidget: (widgetId) => actions.deleteWidget(dispatch,widgetId),
-    changeWidgetType: (widgetId,newType) => actions.changeWidgetType(dispatch,widgetId,newType)
+    changeWidgetType: (widgetId,newType) => actions.changeWidgetType(dispatch,widgetId,newType),
+    moveOrderUp: (widgetId) => actions.moveOrderUp(dispatch,widgetId),
+    moveOrderDown: (widgetId) => actions.moveOrderDown(dispatch,widgetId),
 });
 
 const mapStateToProps = state => ({

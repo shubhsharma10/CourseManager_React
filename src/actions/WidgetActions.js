@@ -66,6 +66,20 @@ export const widgetNameChanged = (dispatch,widgetId,name) => {
     });
 };
 
+export const moveOrderUp = (dispatch,widgetId) => {
+    dispatch({
+        type: constants.MOVE_ORDER_UP,
+        id: widgetId
+    });
+};
+
+export const moveOrderDown = (dispatch,widgetId) => {
+    dispatch({
+        type: constants.MOVE_ORDER_DOWN,
+        id: widgetId
+    });
+};
+
 export const changeWidgetType = (dispatch,widgetId,newType) => {
     dispatch({
         type: constants.SELECT_WIDGET_TYPE,

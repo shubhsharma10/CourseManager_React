@@ -1,6 +1,42 @@
 import * as constants from '../constants/index'
 
+export const moveOrderUp = (widgets,widgetId) => {
+    let index = widgets.map(function (widget) { return widget.id; }).indexOf(widgetId);
+    if(index === 0)
+    {
+        return widgets;
+    }
+    else
+    {
+        let order1 = widgets[index-1].widgetOrder;
+        let order2 = widgets[index].widgetOrder;
+        widgets[index-1].widgetOrder = order2;
+        widgets[index].widgetOrder = order1;
+        widgets[index] = Object.assign({},widgets[index]);
+        widgets[index-1] = Object.assign({},widgets[index-1]);
+        widgets.sort((a, b) => a.widgetOrder - b.widgetOrder);
+        return widgets;
+    }
+};
 
+export const moveOrderDown = (widgets,widgetId) => {
+    let index = widgets.map(function (widget) { return widget.id; }).indexOf(widgetId);
+    if(index === widgets.length-1)
+    {
+        return widgets;
+    }
+    else
+    {
+        let order1 = widgets[index+1].widgetOrder;
+        let order2 = widgets[index].widgetOrder;
+        widgets[index+1].widgetOrder = order2;
+        widgets[index].widgetOrder = order1;
+        widgets[index] = Object.assign({},widgets[index]);
+        widgets[index+1] = Object.assign({},widgets[index+1]);
+        widgets.sort((a, b) => a.widgetOrder - b.widgetOrder);
+        return widgets;
+    }
+};
 
 export const WidgetReducer = (state={widgets: [],preview: false},action) => {
     switch (action.type) {
@@ -123,6 +159,16 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                 ...state,
                 widgets:
                 state.widgets.filter(widget => widget.id !== action.id)};
+        case constants.MOVE_ORDER_UP:
+            return {
+                ...state,
+                widgets: moveOrderUp([...state.widgets],action.id)
+            };
+        case constants.MOVE_ORDER_DOWN:
+            return {
+                ...state,
+                widgets: moveOrderDown([...state.widgets],action.id)
+            };
         default:
             return state;
     }
