@@ -141,13 +141,13 @@ class LessonContent extends React.Component {
 
     render() {
         return(
-            <div id="customTabContent">
+            <div id="customTabContent" className="container">
                 <div className="row">
-                    <div className="card-columns col-10">
+                    <div className="card-columns col-xl-10">
                         {this.renderTopics()}
                     </div>
-                    <div className="col-2">
-                        <button className='btn btn-success'
+                    <div className="col-xl-2">
+                        <button className='btn btn-success float-right'
                                 onClick={this.createTopic}>
                             Add Topic
                         </button>
