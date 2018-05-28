@@ -12,6 +12,10 @@ export const LIST_TYPE_CHANGED = 'LIST_TYPE_CHANGED';
 export const MOVE_ORDER_UP = 'MOVE_ORDER_UP';
 export const MOVE_ORDER_DOWN = 'MOVE_ORDER_DOWN';
 export const PREVIEW = 'PREVIEW';
+
+if (process.env.NODE && ~process.env.NODE.indexOf("heroku"))
+    console.log("I'm in Heroku!");
+
 export const WIDGET_API_URL = 'http://localhost:8080/api/topic/TID/widget';
 export const LESSON_API_URL =
     'http://localhost:8080/api/course/CID/module/MID/lesson';
