@@ -1,7 +1,7 @@
 import * as constants from '../constants/index'
 import bootbox from '../../node_modules/bootbox.js/bootbox';
 
-export const moveOrderUp = (widgets,widgetId) => {
+const moveOrderUp = (widgets,widgetId) => {
     let index = widgets.map(function (widget) { return widget.id; }).indexOf(widgetId);
     if(index === 0)
     {
@@ -20,7 +20,7 @@ export const moveOrderUp = (widgets,widgetId) => {
     }
 };
 
-export const moveOrderDown = (widgets,widgetId) => {
+const moveOrderDown = (widgets,widgetId) => {
     let index = widgets.map(function (widget) { return widget.id; }).indexOf(widgetId);
     if(index === widgets.length-1)
     {
@@ -39,7 +39,7 @@ export const moveOrderDown = (widgets,widgetId) => {
     }
 };
 
-export const resetOrder = (widgets) => {
+const resetOrder = (widgets) => {
     let counter = 1;
     widgets.map(widget => {
         widget.widgetOrder = counter;
@@ -47,6 +47,10 @@ export const resetOrder = (widgets) => {
         return widget;
     });
     return widgets;
+};
+
+const getRandomNumberInRange = (min,max) => {
+    return Math.floor(Math.random() * ((max-min)+1) + min);
 };
 
 export const WidgetReducer = (state={widgets: [],preview: false},action) => {
@@ -157,12 +161,12 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                 widgets:
                 [...state.widgets,
                     {
-                        id: state.widgets.length+4,
+                        id: state.widgets.length + getRandomNumberInRange(1,100),
                         widgetType: 'Heading',
                         size: '2',
                         text: 'New Widget',
                         name: '',
-                        widgetOrder: state.widgets.length + 1,
+                        widgetOrder: state.widgets.length + 1 ,
                         listType: 'Unordered'
                     }],
             };
@@ -170,7 +174,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
             return {
                 ...state,
                 widgets:
-                state.widgets.filter(widget => widget.id !== action.id)};
+                    resetOrder(state.widgets.filter(widget => widget.id !== action.id))};
         case constants.MOVE_ORDER_UP:
             return {
                 ...state,

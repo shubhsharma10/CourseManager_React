@@ -45,7 +45,7 @@ class WidgetListComponent extends React.Component {
                         <Widget key={widget.id} currIndex={index} widget={widget} length={this.props.widgets.length}/>)}
                 </ul>
                 </div>
-                <div className="row justify-content-end">
+                <div className="row justify-content-end mt-2">
                     <div className="col-md-4 col-sm-11 col-lg-4">
                         <button className="btn btn-success float-right"
                                 onClick={() => this.props.addWidget()}>
