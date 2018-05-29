@@ -5,8 +5,8 @@ import * as actions from '../actions/WidgetActions'
 const renderUnorderedList = (listItems) => {
     return(
         <ul>
-            {listItems.map(item => {
-            return <li>{item}</li>;
+            {listItems.map((item,index) => {
+            return <li key={index}>{item}</li>;
         })}
         </ul>
     )
@@ -15,8 +15,8 @@ const renderUnorderedList = (listItems) => {
 const renderOrderedList = (listItems) => {
     return(
         <ol>
-            {listItems.map(item => {
-            return <li>{item}</li>;
+            {listItems.map((item,index) => {
+            return <li key={index}>{item}</li>;
         })}
         </ol>
     )
