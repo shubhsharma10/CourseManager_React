@@ -41,8 +41,8 @@ class WidgetListComponent extends React.Component {
                 </div>
                 <div>
                 <ul className="list-group">
-                    {this.props.widgets.map(widget =>
-                        <Widget key={widget.id} widget={widget}/>)}
+                    {this.props.widgets.map((widget,index) =>
+                        <Widget key={widget.id} currIndex={index} widget={widget} length={this.props.widgets.length}/>)}
                 </ul>
                 </div>
                 <div className="row justify-content-end">

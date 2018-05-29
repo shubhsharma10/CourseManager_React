@@ -7,7 +7,7 @@ import {Link} from './Link'
 import {List} from './List'
 import * as actions from '../actions/WidgetActions'
 
-const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrderUp,moveOrderDown}) => {
+const WidgetComponent = ({currIndex,length,widget,preview,deleteWidget,changeWidgetType,moveOrderUp,moveOrderDown}) => {
     let select;
     return(
         <li>
@@ -33,11 +33,11 @@ const WidgetComponent = ({widget,preview,deleteWidget,changeWidgetType,moveOrder
                             <option>List</option>
                             <option>Image</option>
                         </select>
-                        <button className="btn-primary float-right"
+                        <button hidden={currIndex === length-1} className="btn-primary float-right"
                                 onClick={()=> moveOrderDown(widget.id)}>
                             <i className="fa fa-arrow-down"/>
                         </button>
-                        <button className="btn-primary float-right"
+                        <button hidden={currIndex === 0} className="btn-primary float-right"
                                 onClick={()=> moveOrderUp(widget.id)}>
                             <i className="fa fa-arrow-up"/>
                         </button>
