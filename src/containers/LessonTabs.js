@@ -14,7 +14,7 @@ export default class LessonTabs extends React.Component {
         this.state = {
             moduleId: '',
             courseId: '',
-            activeTabIndex: '',
+            selectedLessonId: 0,
             lesson: { title: 'New Lesson' },
             lessons: []
         };
@@ -22,6 +22,7 @@ export default class LessonTabs extends React.Component {
         this.createLesson = this.createLesson.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
+        this.selectLesson = this.selectLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
 
         this.lessonService = LessonService.instance;
@@ -110,6 +111,10 @@ export default class LessonTabs extends React.Component {
         });
     }
 
+    selectLesson(lessonId) {
+        this.setState({selectedLessonId:lessonId});
+    }
+
     renderTabs() {
         let lessons = this.state.lessons.map((lesson)=> {
             return <LessonTab
@@ -118,6 +123,8 @@ export default class LessonTabs extends React.Component {
                 lesson={lesson}
                 key={lesson.id}
                 id={lesson.id}
+                active = {lesson.id === this.state.selectedLessonId}
+                selectLesson={this.selectLesson}
                 delete={this.deleteLesson}/>
         });
         return lessons;

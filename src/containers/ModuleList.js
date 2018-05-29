@@ -14,7 +14,6 @@ export default class ModuleList extends Component {
             courseId: '',
             module: { title: 'New Module' },
             selectedModuleId: '',
-            moduleSelected: false,
             modules: []
         };
 
@@ -84,7 +83,6 @@ export default class ModuleList extends Component {
 
     selectModule(moduleId) {
         this.setState({selectedModuleId:moduleId});
-        this.setState({moduleSelected:true});
     }
 
     deleteModule(moudleId,moduleTitle) {

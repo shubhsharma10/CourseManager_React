@@ -5,8 +5,9 @@ class LessonTab extends React.Component {
 
     render() {
         return(
-            <li>
-                <Link className="nav-item nav-link"
+            <li >
+                <Link className = {this.props.active ? 'nav-item nav-link activeLI': 'nav-item nav-link'}
+                      onClick={() => this.props.selectLesson(this.props.lesson.id)}
                       to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}
                       role="tab">
                     <div className="row">
