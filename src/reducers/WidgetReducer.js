@@ -161,7 +161,7 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                 widgets:
                 [...state.widgets,
                     {
-                        id: state.widgets.length + getRandomNumberInRange(1,100),
+                        id: Date.now() & 0xfffffff,
                         widgetType: 'Heading',
                         size: '2',
                         text: 'New Widget',

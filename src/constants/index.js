@@ -13,19 +13,19 @@ export const MOVE_ORDER_UP = 'MOVE_ORDER_UP';
 export const MOVE_ORDER_DOWN = 'MOVE_ORDER_DOWN';
 export const PREVIEW = 'PREVIEW';
 
-export const WIDGET_API_URL = 'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/topic/TID/widget';
+export const WIDGET_API_URL = 'http://localhost:8080/api/topic/TID/widget';
 export const LESSON_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course/CID/module/MID/lesson';
+    'http://localhost:8080/api/course/CID/module/MID/lesson';
 export const GEN_LESSON_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/lesson';
+    'http://localhost:8080/api/lesson';
 export const COURSE_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course';
+    'http://localhost:8080/api/course';
 export const MODULE_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course/CID/module';
+    'http://localhost:8080/api/course/CID/module';
 
 export const DIRECT_MODULE_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/module';
+    'http://localhost:8080/api/module';
 export const TOPIC_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
+    'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
 export const GEN_TOPIC_API_URL =
-    'https://cs5610-summer1-2018-ssharma.herokuapp.com/api/topic';
+    'http://localhost:8080/api/topic';
