@@ -1,5 +1,5 @@
 import React from 'react'
-import LessonContent from './LessonContent'
+import TopicEditor from './TopicEditor'
 import LessonService from '../services/LessonService'
 
 export default class LessonContentEditor
@@ -62,7 +62,7 @@ export default class LessonContentEditor
     render() {
         return (
             <div className="tab-content">
-                <LessonContent
+                <TopicEditor
                     courseId = {this.state.courseId}
                     moduleId = {this.state.moduleId}
                     lessonId = {this.state.lessonId}

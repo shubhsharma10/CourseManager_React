@@ -5,7 +5,7 @@ import TopicCard from '../components/TopicCard'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
 import $ from 'jquery'
 
-class LessonContent extends React.Component {
+class TopicEditor extends React.Component {
 
     constructor(props) {
         super(props);
@@ -158,5 +158,5 @@ class LessonContent extends React.Component {
     }
 }
 
-export default LessonContent;
+export default TopicEditor;
 
