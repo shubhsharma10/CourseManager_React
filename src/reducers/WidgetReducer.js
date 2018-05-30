@@ -49,11 +49,15 @@ const resetOrder = (widgets) => {
     return widgets;
 };
 
-const getRandomNumberInRange = (min,max) => {
-    return Math.floor(Math.random() * ((max-min)+1) + min);
+
+const isDuplicateWidgetName = (widgets) => {
+    let nameArr = widgets.map(function(widget){ return widget.name });
+    return nameArr.some(function(widgetName, idx){
+        return nameArr.indexOf(widgetName) !== idx
+    });
 };
 
-export const WidgetReducer = (state={widgets: [],preview: false},action) => {
+export const WidgetReducer = (state={widgets: [],preview: false, isWidgetNameUnique: true},action) => {
     switch (action.type) {
         case constants.HEADING_TEXT_CHANGED:
             return {
@@ -96,14 +100,17 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                 })
             };
         case constants.WIDGET_NAME_CHANGED:
+            var newWidgets = state.widgets.map(widget => {
+                if(widget.id === action.id) {
+                    widget.name = action.name;
+                }
+                return Object.assign({}, widget);
+            });
+
             return {
                 ...state,
-                widgets: state.widgets.map(widget => {
-                    if(widget.id === action.id) {
-                        widget.name = action.name;
-                    }
-                    return Object.assign({}, widget);
-                })
+                widgets: newWidgets,
+                isWidgetNameUnique: ! isDuplicateWidgetName(newWidgets)
             };
         case constants.HEADING_SIZE_CHANGED:
             return {
@@ -153,7 +160,8 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     }
                 ),
                 preview: false,
-                parentTopicId: action.topicId};
+                parentTopicId: action.topicId,
+                isWidgetNameUnique: true};
 
         case constants.ADD:
             return {
@@ -171,10 +179,11 @@ export const WidgetReducer = (state={widgets: [],preview: false},action) => {
                     }],
             };
         case constants.DELETE:
+            var newWidgets = resetOrder(state.widgets.filter(widget => widget.id !== action.id));
             return {
                 ...state,
-                widgets:
-                    resetOrder(state.widgets.filter(widget => widget.id !== action.id))};
+                widgets: newWidgets,
+                isWidgetNameUnique: ! isDuplicateWidgetName(newWidgets)};
         case constants.MOVE_ORDER_UP:
             return {
                 ...state,

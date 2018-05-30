@@ -24,6 +24,9 @@ class WidgetListComponent extends React.Component {
     render() {
         return(
             <div className="container widgetListContainer">
+                <div hidden={this.props.isWidgetNameUnique} className="alert alert-warning">
+                    <strong >Widget names are not unique!</strong>
+                </div>
                 <div className="row">
                     <div className="col-xl-9 col-md-5 col-sm-0 col-lg-8">
                     </div>
@@ -33,6 +36,7 @@ class WidgetListComponent extends React.Component {
                             Preview
                         </button>
                         <button hidden={this.props.preview}
+                                disabled={!this.props.isWidgetNameUnique}
                                 className="btn btn-success float-right"
                                 onClick={this.props.saveWidgets}>
                             Save
@@ -62,7 +66,8 @@ class WidgetListComponent extends React.Component {
 const mapStateToProps = (state) => ({
     widgets: state.widgets,
     preview: state.preview,
-    parentTopicId: state.parentTopicId
+    parentTopicId: state.parentTopicId,
+    isWidgetNameUnique: state.isWidgetNameUnique
 });
 
 const mapDispatchToProps = (dispatch) => ({
