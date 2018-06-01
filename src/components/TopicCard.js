@@ -12,10 +12,13 @@ export default class TopicCard extends React.Component {
                         <h5 >{this.props.topic.title}</h5>
                     </Link>
                 </div>
-                <button className="btn btn-danger float-right btn-sm" onClick={() =>
-               {this.props.delete(this.props.topic.id,this.props.topic.title)}}>
-                   <i className="fa fa-times"/>
-               </button>
+                <div className="float-right">
+                    <a className="btn-floating btn-small float-right waves-effect waves-light red"
+                       onClick={() =>
+                       {this.props.delete(this.props.topic.id,this.props.topic.title)}}>
+                        <i className="material-icons">clear</i>
+                    </a>
+                </div>
             </div>
         );
     }

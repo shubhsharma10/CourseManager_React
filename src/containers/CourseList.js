@@ -2,6 +2,8 @@ import React from 'react';
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService'
 import bootbox from '../../node_modules/bootbox.js/bootbox.js';
+import '../../node_modules/materialize-css/dist/css/materialize.css'
+import '../../node_modules/materialize-css/dist/js/materialize.js'
 
 class CourseList extends React.Component {
     constructor() {
@@ -76,14 +78,14 @@ class CourseList extends React.Component {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <a className="navbar-brand">Course Manager</a>
 
-                    <input className="form-control ml-2 mr-3 mt-1 mb-1"
-                           id="titleFId" type="text"
-                           onChange={this.titleChanged} defaultValue="CS0000"
+                    <input className="input-field ml-2 mr-3 mt-1 mb-1"
+                           id="titleFId" type="text" placeholder="Enter Course title here"
+                           onChange={this.titleChanged}
                     />
-                    <button className="btn btn-success btn-circle btn-xl"
-                            onClick={this.createCourse}>
-                        <i className="fa fa-plus"></i>
-                    </button>
+                    <a className="btn-floating btn-small waves-effect waves-light red"
+                        onClick={this.createCourse}>
+                        <i className="material-icons">add</i>
+                    </a>
                 </nav>
                 <div className="container">
                     <table className="table">

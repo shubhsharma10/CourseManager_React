@@ -10,20 +10,14 @@ import * as actions from '../actions/WidgetActions'
 const WidgetComponent = ({currIndex,length,widget,preview,deleteWidget,changeWidgetType,moveOrderUp,moveOrderDown}) => {
     let select;
     return(
-        <li>
+        <li id="sunkenDiv">
             <div hidden={preview} className="container" id="widgetControlRow">
                 <div className="row">
-                    <div className="col-xl-9 col-md-5 col-sm-0 col-lg-7">
+                    <div className="col-xl-9 col-md-5 col-sm-1 col-lg-7">
+                        <h3>{widget.widgetType} widget</h3>
                     </div>
-                    <div className="col-xl-3 col-md-7 col-sm-12 col-lg-5">
-                        <button className="btn-danger float-right"
-                                onClick={e => {
-                                    e.preventDefault();
-                                    deleteWidget(widget.id);
-                                }}>
-                            <i className="fa fa-times"/>
-                        </button>
-                        <select className="form-control-sm float-right"
+                    <div className="form-group col-xl-3 col-md-7 col-sm-11 col-lg-5">
+                        <select className="float-right from-control browser-default"
                                 value={widget.widgetType}
                                 ref={node => select = node}
                                 onChange={() => changeWidgetType(widget.id,select.value)}>
@@ -33,22 +27,29 @@ const WidgetComponent = ({currIndex,length,widget,preview,deleteWidget,changeWid
                             <option>List</option>
                             <option>Image</option>
                         </select>
-                        <button hidden={currIndex === length-1} className="btn-primary float-right"
-                                onClick={()=> moveOrderDown(widget.id)}>
-                            <i className="fa fa-arrow-down"/>
-                        </button>
-                        <button hidden={currIndex === 0} className="btn-primary float-right"
-                                onClick={()=> moveOrderUp(widget.id)}>
-                            <i className="fa fa-arrow-up"/>
-                        </button>
-
-
+                        <a className="btn-floating btn-small float-right waves-effect waves-light red"
+                           onClick={e => {
+                               e.preventDefault();
+                               deleteWidget(widget.id);
+                           }}>
+                            <i className="material-icons">clear</i>
+                        </a>
+                        <a hidden={currIndex === length-1}
+                           className="btn-floating btn-small float-right waves-effect waves-light green"
+                           onClick={()=> moveOrderDown(widget.id)}>
+                            <i className="material-icons">arrow_downward</i>
+                        </a>
+                        <a hidden={currIndex === 0}
+                           className="btn-floating btn-small float-right waves-effect waves-light green"
+                           onClick={()=> moveOrderUp(widget.id)}>
+                            <i className="material-icons">arrow_upward</i>
+                        </a>
                     </div>
                 </div>
 
 
             </div>
-            <div id="sunkenDiv">
+            <div>
                 {widget.widgetType === 'Heading' && <Heading widget={widget}/>}
                 {widget.widgetType === 'Image' && <Image widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <Paragraph widget={widget}/>}

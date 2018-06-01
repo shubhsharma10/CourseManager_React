@@ -9,9 +9,6 @@ const ImageComponent = ({widget,preview,imageURLChanged,widgetNameChanged}) => {
     return(
         <div>
             <div hidden={preview} className="container">
-                <div className="row">
-                    <h3>{widget.widgetType} widget</h3>
-                </div>
                 <div className="form-group">
                     <label htmlFor="imageURL">Image URL:</label>
                     <input type="url" className="form-control" id="imageURL" placeholder="http://lorempixel.com/300/150"

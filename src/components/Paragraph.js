@@ -8,9 +8,6 @@ const ParagraphComponent = ({widget,preview,paragraphTextChanged,widgetNameChang
     return(
         <div>
             <div hidden={preview} className="container">
-                <div className="row">
-                    <h3>{widget.widgetType} widget</h3>
-                </div>
                 <div className="form-group">
                     <label htmlFor="paragraphText">Paragraph:</label>
                     <input type="text" className="form-control" id="paragraphText" placeholder="Lorem ipsum"
