@@ -37,6 +37,9 @@ const ListComponent = ({widget,preview,listTextChanged,listTypeChanged,widgetNam
     return(
         <div>
             <div hidden={preview} className="container">
+                <div className="row">
+                    <h3>{widget.widgetType} widget</h3>
+                </div>
                 <div className="form-group">
                     <label htmlFor="listText">List Text:</label>
                     <textarea className="form-control" id="listText" placeholder="Put \n eact \item"
@@ -48,7 +51,7 @@ const ListComponent = ({widget,preview,listTextChanged,listTypeChanged,widgetNam
                     <label htmlFor="listType">List Type:</label>
                     <select onChange={() => listTypeChanged(widget.id,listType.value)}
                             id="listType"
-                            className="form-control browser-default"
+                            className="form-control"
                             ref={node => listType = node}
                             value={widget.listType}>
                         <option value="Unordered">Unordered List</option>

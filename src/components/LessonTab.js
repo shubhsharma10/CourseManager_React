@@ -15,11 +15,10 @@ class LessonTab extends React.Component {
                             {this.props.lesson.title}
                         </div>
                         <div className="col-4" style={{paddingTop: '10px'}}>
-                            <a className="btn-floating btn-small waves-effect waves-light red"
-                               onClick={() =>
-                               {this.props.delete(this.props.lesson.id,this.props.lesson.title)}}>
-                                <i className="material-icons">clear</i>
-                            </a>
+                            <button className="btn btn-sm btn-danger" onClick={() =>
+                            {this.props.delete(this.props.lesson.id,this.props.lesson.title)}}>
+                                <i className="fa fa-times"></i>
+                            </button>
                         </div>
                     </div>
                 </Link>

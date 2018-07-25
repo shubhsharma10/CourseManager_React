@@ -9,6 +9,9 @@ const LinkComponent = ({widget,preview,linkURLChanged,linkTextChanged,widgetName
     return(
         <div>
             <div hidden={preview} className="container">
+                <div className="row">
+                    <h3>{widget.widgetType} widget</h3>
+                </div>
                 <div className="form-group">
                     <label htmlFor="linkURL">Link URL:</label>
                     <input type="url" className="form-control" id="linkURL" placeholder="http://lorempixel.com/300/150"

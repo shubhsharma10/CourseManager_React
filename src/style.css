@@ -38,13 +38,13 @@ tr:hover {
     width: 100%;
 }
 
-/*.btn-circle.btn-xl {*/
-    /*width: 50px;*/
-    /*height: 50px;*/
-    /*border-radius: 30px;*/
-    /*font-size: 30px;*/
-    /*line-height: 1.33;*/
-/*}*/
+.btn-circle.btn-xl {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 30px;
+    line-height: 1.33;
+}
 
 /* Tab Navigation */
 .nav-tabs {
@@ -87,10 +87,12 @@ ul {
 }
 
 
+
+
 #sunkenDiv{
     padding-top: 2px;
     padding-bottom: 2px;
-    border: 1px solid slategrey;
+    border-bottom:1px inset grey;
 }
 
 #widgetControlRow{

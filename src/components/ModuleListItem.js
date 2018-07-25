@@ -14,11 +14,11 @@ export default class ModuleListItem
                     {this.props.module.title}
                 </Link>
                 <div className="float-right">
-                    <a className="btn-floating btn-small waves-effect waves-light red"
-                       onClick={() =>
-                       {this.props.delete(this.props.module.id,this.props.module.title)}}>
-                        <i className="material-icons">clear</i>
-                    </a>
+                    <button className="btn btn-sm btn-danger"
+                            onClick={() =>
+                            {this.props.delete(this.props.module.id,this.props.module.title)}}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </button>
                 </div>
                 </div>
             </li>

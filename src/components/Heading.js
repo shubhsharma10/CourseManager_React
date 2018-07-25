@@ -9,6 +9,9 @@ const HeadingComponent = ({widget,preview,headingSizeChanged,headingTextChanged,
     return(
         <div>
             <div hidden={preview} className="container">
+                <div className="row">
+                    <h3>{widget.widgetType} widget</h3>
+                </div>
                 <div className="form-group">
                     <label htmlFor="headingText">Heading Text:</label>
                     <input type="text" className="form-control" id="headingText" placeholder="Heading Text"
@@ -20,7 +23,7 @@ const HeadingComponent = ({widget,preview,headingSizeChanged,headingTextChanged,
                     <label htmlFor="headingSize">Heading Size:</label>
                     <select onChange={() => headingSizeChanged(widget.id,headingSize.value)}
                             id="headingSize"
-                            className="form-control browser-default"
+                            className="form-control"
                             ref={node => headingSize = node}
                             value={widget.size}>
                         <option value="1">Heading 1</option>
